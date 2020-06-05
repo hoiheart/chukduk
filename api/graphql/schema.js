@@ -2,31 +2,70 @@ const mongoose = require('mongoose')
 const { gql } = require('apollo-server-fastify')
 
 const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+  scalar Date
 
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Book {
-    title: String
-    author: String
+  type Community {
+    id: ID!,
+    bbs: String!,
+    no: Int!,
+    url: String!,
+    category: String!,
+    title: String!,
+    author: String!,
+    date: Date!,
+    views: Int!,
+    hasMovie: Boolean!,
+    hasImage: Boolean!
   }
 
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
+  type Media {
+    id: ID!,
+    no: Int!,
+    category: String!,
+    url: String!,
+    title: String!,
+    date: Date!,
+    thumb: String!,
+    views: Int!
+  }
+
   type Query {
-    books: [Book]
+    community: [Community],
+    media: [Media]
   }
 `
 
-const books = mongoose.model('books', {
+const community = mongoose.model('community', {
+  bbs: String,
+  no: Number,
+  url: String,
+  category: String,
   title: String,
-  author: String
-})
+  author: String,
+  date: Date,
+  views: Number,
+  hasMovie: Boolean,
+  hasImage: Boolean
+}, 'community')
+
+const media = mongoose.model('media', {
+  no: Number,
+  category: String,
+  url: String,
+  title: String,
+  date: Date,
+  thumb: String,
+  views: Number
+}, 'media')
 
 const resolvers = {
   Query: {
-    books: async () => {
-      const result = await books.find()
+    community: async () => {
+      const result = await community.find()
+      return result
+    },
+    media: async () => {
+      const result = await media.find()
       return result
     }
   }

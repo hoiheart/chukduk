@@ -15,11 +15,10 @@ fastify.register(server.createHandler({
   cors: true
 }))
 
-const host = (process.env.NODE_ENV === 'development') ? 'localhost' : 'mongo'
 
 // docker 환경은 image 이름으로 사용
 // https://stackoverflow.com/questions/49095032/cant-connect-to-mongo-docker-image-with-mongoose
-// todo 로컬에서도 접속될 수 있도록 환경변수 분기 처리
+const host = (process.env.RUN_IN_DOCKER) ? 'mongo' : 'localhost'
 mongoose.connect(`mongodb://${env.MONGODB_USER}:${env.MONGODB_PASS}@${host}:27017/${env.MONGODB_DATABASE}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true

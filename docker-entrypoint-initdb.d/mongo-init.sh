@@ -11,5 +11,7 @@ db.createUser({
     db: '$MONGO_INITDB_DATABASE'
   }]
 })
-db.createCollection('books')
+db.createCollection('community')
+db.createCollection('media')
+db.createCollection('sessions')
 EOF

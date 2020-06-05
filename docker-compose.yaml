@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
       context: ./api
     volumes:
+      - ./api:/usr/api
       - ./.env:/usr/.env # env 파일 복사
     ports:
       - "3001:3001"

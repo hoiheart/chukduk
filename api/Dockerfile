@@ -1,5 +1,7 @@
 FROM node:12
 
+ENV RUN_IN_DOCKER=true
+
 # 앱 디렉터리 생성
 WORKDIR /usr/api
 
