@@ -67,6 +67,7 @@ const week = new Date(dayjs(now).add(-7, 'day').format('YYYY-MM-DD HH:mm'))
 interface CommunityArgs {
   type: 'daily' | 'weekly' | null,
   title: string | null,
+  bbs: string | null,
   category: string | null,
   lastID: mongoose.Types.ObjectId | null
 }
