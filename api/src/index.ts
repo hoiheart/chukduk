@@ -3,9 +3,10 @@ import { ApolloServer } from 'apollo-server-fastify'
 import mongoose from 'mongoose'
 import fastify, { FastifyInstance } from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
+import { typeDefs } from '../graphql/typeDefs'
+import { resolvers } from '../graphql/resolvers'
 
-const env = dotenv.config({ path: '../.env' }).parsed
-const { typeDefs, resolvers } = require('../graphql/schema')
+dotenv.config({ path: '../.env' })
 
 const apollo = new ApolloServer({
   typeDefs,
@@ -27,7 +28,7 @@ server.register(apollo.createHandler({
 // docker 환경은 image 이름으로 사용
 // https://stackoverflow.com/questions/49095032/cant-connect-to-mongo-docker-image-with-mongoose
 const host = (process.env.RUN_IN_DOCKER) ? 'mongo' : 'localhost'
-mongoose.connect(`mongodb://${env.MONGODB_USER}:${env.MONGODB_PASS}@${host}:27017/${env.MONGODB_DATABASE}`, {
+mongoose.connect(`mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${host}:27017/${process.env.MONGODB_DATABASE}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(

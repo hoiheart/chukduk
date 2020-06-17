@@ -1,40 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose'
-import { gql } from 'apollo-server-fastify'
 import dayjs from 'dayjs'
-
-const typeDefs = gql`
-  scalar Date
-
-  type Community {
-    id: ID!,
-    bbs: String!,
-    no: Int!,
-    url: String!,
-    category: String!,
-    title: String!,
-    author: String!,
-    date: Date!,
-    views: Int!,
-    hasMovie: Boolean!,
-    hasImage: Boolean!
-  }
-
-  type Media {
-    id: ID!,
-    no: Int!,
-    category: String!,
-    url: String!,
-    title: String!,
-    date: Date!,
-    thumb: String!,
-    views: Int!
-  }
-
-  type Query {
-    getCommunityList(type: String, title: String, bbs: String, category: String, lastID: ID): [Community],
-    getMediaList: [Media]
-  }
-`
 
 const community = mongoose.model<Document>('community', new Schema({
   bbs: String,
@@ -72,7 +37,7 @@ interface CommunityArgs {
   lastID: mongoose.Types.ObjectId | null
 }
 
-const resolvers = {
+export const resolvers = {
   Query: {
     getCommunityList: async (parent, { type, title, bbs, category, lastID }: CommunityArgs) => {
       const query = {
@@ -99,9 +64,4 @@ const resolvers = {
       return result
     }
   }
-}
-
-module.exports = {
-  typeDefs,
-  resolvers
 }
