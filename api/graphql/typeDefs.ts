@@ -30,6 +30,6 @@ export const typeDefs = gql`
 
   type Query {
     getCommunityList(type: String, title: String, bbs: String, category: String, lastID: ID): [Community],
-    getMediaList: [Media]
+    getMediaList(title: String, category: String, lastID: ID): [Media]
   }
 `
