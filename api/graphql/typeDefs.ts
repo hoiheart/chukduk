@@ -10,11 +10,10 @@ export const typeDefs = gql`
     url: String!,
     category: String!,
     title: String!,
-    author: String!,
     date: Date!,
     views: Int!,
-    hasMovie: Boolean!,
-    hasImage: Boolean!
+    hasMovie: Boolean,
+    hasImage: Boolean
   }
 
   type Media {

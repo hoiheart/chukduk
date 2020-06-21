@@ -7,7 +7,6 @@ const community = mongoose.model<Document>('community', new Schema({
   url: String,
   category: String,
   title: String,
-  author: String,
   date: Date,
   views: Number,
   hasMovie: Boolean,
