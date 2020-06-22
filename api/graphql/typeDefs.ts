@@ -31,4 +31,8 @@ export const typeDefs = gql`
     getCommunityList(type: String, title: String, bbs: String, category: String, lastID: ID): [Community],
     getMediaList(title: String, category: String, lastID: ID): [Media]
   }
+
+  type Mutation {
+    insertCommunity(data: CommunityData): [Community]
+  }
 `

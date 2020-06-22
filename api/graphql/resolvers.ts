@@ -1,27 +1,7 @@
-import mongoose, { Schema, Document } from 'mongoose'
+import type mongoose from 'mongoose'
+import { community } from '../models/community'
+import { media } from '../models/media'
 import dayjs from 'dayjs'
-
-const community = mongoose.model<Document>('community', new Schema({
-  bbs: String,
-  no: Number,
-  url: String,
-  category: String,
-  title: String,
-  date: Date,
-  views: Number,
-  hasMovie: Boolean,
-  hasImage: Boolean
-}), 'community')
-
-const media = mongoose.model<Document>('media', new Schema({
-  no: Number,
-  category: String,
-  url: String,
-  title: String,
-  date: Date,
-  thumb: String,
-  views: Number
-}), 'media')
 
 interface CommunityArgs {
   type: 'daily' | 'weekly' | null,
