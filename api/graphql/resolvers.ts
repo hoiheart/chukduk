@@ -63,5 +63,42 @@ export const resolvers = {
         return e
       }
     }
+  },
+  Mutation: {
+    async createCommunity(root, { data }) {
+      try {
+        let counts = 0
+        for (let i = 0; i < data.length; i++) {
+          const item = data[i]
+          const result = await community.updateOne({
+            bbs: item.bbs,
+            no: item.no
+          }, {
+            $setOnInsert: {
+              bbs: item.bbs,
+              category: item.category,
+              no: item.no,
+              url: item.url,
+              title: item.title,
+              hasImage: item.hasImage || false,
+              hasMovie: item.hasMovie || false,
+              date: new Date(),
+              views: 0
+            }
+          }, {
+            upsert: true
+          })
+
+          if (result.upserted) counts++
+        }
+        return {
+          success: true,
+          inserted: counts
+        }
+      } catch (e) {
+        console.log(e)
+        return e
+      }
+    }
   }
 }

@@ -6,7 +6,7 @@ export const typeDefs = gql`
   type Community {
     id: ID!,
     bbs: String!,
-    no: Int!,
+    no: String!,
     url: String!,
     category: String!,
     title: String!,
@@ -18,7 +18,7 @@ export const typeDefs = gql`
 
   type Media {
     id: ID!,
-    no: Int!,
+    no: String!,
     category: String!,
     url: String!,
     title: String!,
@@ -32,7 +32,22 @@ export const typeDefs = gql`
     getMediaList(title: String, category: String, lastID: ID): [Media]
   }
 
+  input CommunityInput {
+    bbs: String!,
+    no: String!,
+    url: String!,
+    category: String!,
+    title: String!
+    hasMovie: Boolean,
+    hasImage: Boolean
+  }
+
+  type CreateResult {
+    success: Boolean,
+    inserted: Int
+  }
+
   type Mutation {
-    insertCommunity(data: CommunityData): [Community]
+    createCommunity(data: [CommunityInput]): CreateResult
   }
 `
