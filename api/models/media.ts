@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose'
 
 const media = mongoose.model<Document>('media', new Schema({
-  no: Number,
+  no: String,
   category: String,
   url: String,
   title: String,

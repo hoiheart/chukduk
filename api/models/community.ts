@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose'
 
 const community = mongoose.model<Document>('community', new Schema({
   bbs: String,
-  no: Number,
+  no: String,
   url: String,
   category: String,
   title: String,
