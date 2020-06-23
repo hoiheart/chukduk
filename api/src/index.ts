@@ -3,18 +3,25 @@ import { ApolloServer } from 'apollo-server-fastify'
 import mongoose from 'mongoose'
 import fastify, { FastifyInstance } from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
-
 import { typeDef as commonDef } from '../typeDefs'
 import { typeDef as communityDef } from '../typeDefs/community'
 import { typeDef as mediaDef } from '../typeDefs/media'
-
-import { resolvers } from '../graphql/resolvers'
+import { query as communityQuery, mutation as communityMutation } from '../resolvers/community'
+import { query as mediaQuery } from '../resolvers/media'
 
 dotenv.config({ path: '../.env' })
 
 const apollo = new ApolloServer({
   typeDefs: [commonDef, communityDef, mediaDef],
-  resolvers
+  resolvers: {
+    Query: {
+      ...communityQuery,
+      ...mediaQuery
+    },
+    Mutation: {
+      ...communityMutation
+    }
+  }
 })
 
 const server: FastifyInstance<
