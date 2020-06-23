@@ -14,7 +14,7 @@ export const typeDef = gql`
     hasImage: Boolean
   }
 
-  input CommunityInput {
+  input CreateCommunity {
     bbs: String!,
     no: String!,
     url: String!,
@@ -22,5 +22,10 @@ export const typeDef = gql`
     title: String!
     hasMovie: Boolean,
     hasImage: Boolean
+  }
+
+  input ViewCommunity {
+    bbs: String!,
+    no: String!
   }
 `

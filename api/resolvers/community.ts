@@ -62,13 +62,25 @@ export const mutation = {
         }, {
           upsert: true
         })
-
         if (result.upserted) counts++
       }
       return {
         success: true,
         inserted: counts
       }
+    } catch (e) {
+      console.log(e)
+      return e
+    }
+  },
+  async viewCommunity(root, { data }) {
+    try {
+      const query = { bbs: data.bbs, no: data.no }
+      await community.updateOne(query, {
+        $inc: { views: 1 }
+      })
+      const result = await community.findOne(query)
+      return result
     } catch (e) {
       console.log(e)
       return e
