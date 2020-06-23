@@ -11,4 +11,16 @@ export const typeDef = gql`
     thumb: String!,
     views: Int!
   }
+
+  input CreateMedia {
+    no: String!,
+    url: String!,
+    category: String!,
+    title: String!,
+    thumb: String!
+  }
+
+  input ViewMedia {
+    no: String!
+  }
 `

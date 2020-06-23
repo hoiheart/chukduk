@@ -7,7 +7,7 @@ import { typeDef as commonDef } from '../typeDefs'
 import { typeDef as communityDef } from '../typeDefs/community'
 import { typeDef as mediaDef } from '../typeDefs/media'
 import { query as communityQuery, mutation as communityMutation } from '../resolvers/community'
-import { query as mediaQuery } from '../resolvers/media'
+import { query as mediaQuery, mutation as mediaMutation } from '../resolvers/media'
 
 dotenv.config({ path: '../.env' })
 
@@ -19,7 +19,8 @@ const apollo = new ApolloServer({
       ...mediaQuery
     },
     Mutation: {
-      ...communityMutation
+      ...communityMutation,
+      ...mediaMutation
     }
   }
 })
