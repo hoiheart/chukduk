@@ -8,6 +8,6 @@ const media = mongoose.model<Document>('media', new Schema({
   date: Date,
   thumb: String,
   views: Number
-}), 'media')
+}, { versionKey: false }), 'media')
 
 export { media }

@@ -10,6 +10,6 @@ const community = mongoose.model<Document>('community', new Schema({
   views: Number,
   hasMovie: Boolean,
   hasImage: Boolean
-}), 'community')
+}, { versionKey: false }), 'community')
 
 export { community }
