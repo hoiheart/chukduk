@@ -36,11 +36,7 @@ server.register(apollo.createHandler({
   cors: true
 }))
 
-
-// docker 환경은 image 이름으로 사용
-// https://stackoverflow.com/questions/49095032/cant-connect-to-mongo-docker-image-with-mongoose
-const host = (process.env.RUN_IN_DOCKER) ? 'mongo' : 'localhost'
-mongoose.connect(`mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${host}:27017/${process.env.MONGODB_DATABASE}`, {
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@cluster0.0at2r.gcp.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(

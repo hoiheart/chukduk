@@ -26,21 +26,6 @@ services:
     networks: 
       - server
 
-  mongo:
-    container_name: mongo
-    image: mongo:4
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: "${MONGODB_USER}"
-      MONGO_INITDB_ROOT_PASSWORD: "${MONGODB_PASS}"
-      MONGO_INITDB_DATABASE: "${MONGODB_DATABASE}"
-    volumes:
-      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
-    ports:
-      - "27017:27017"
-    networks: 
-      - server
-
   nginx:
     container_name: nginx
     build:
