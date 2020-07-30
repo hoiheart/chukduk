@@ -2,9 +2,11 @@ module.exports = {
   apps: [{
     name: 'server',
     script: './dist/index.js',
-    // instances: 'max',
-    // exec_mode: 'cluster',
-    watch: true,
-    ignore_watch: ['node_modules']
+    env: {
+      NODE_ENV: 'production'
+    },
+    max_memory_restart: '500M',
+    out_file: './log/out.log',
+    error_file: './log/err.log'
   }]
 }

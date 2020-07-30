@@ -3,11 +3,11 @@ import { ApolloServer } from 'apollo-server-fastify'
 import mongoose from 'mongoose'
 import fastify, { FastifyInstance } from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
-import { typeDef as commonDef } from '../typeDefs'
-import { typeDef as communityDef } from '../typeDefs/community'
-import { typeDef as mediaDef } from '../typeDefs/media'
-import { query as communityQuery, mutation as communityMutation } from '../resolvers/community'
-import { query as mediaQuery, mutation as mediaMutation } from '../resolvers/media'
+import { typeDef as commonDef } from './typeDefs'
+import { typeDef as communityDef } from './typeDefs/community'
+import { typeDef as mediaDef } from './typeDefs/media'
+import { query as communityQuery, mutation as communityMutation } from './resolvers/community'
+import { query as mediaQuery, mutation as mediaMutation } from './resolvers/media'
 
 dotenv.config({ path: '../.env' })
 
@@ -55,4 +55,4 @@ const start = async () => {
   }
 }
 
-start() 
+start()
