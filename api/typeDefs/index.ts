@@ -14,9 +14,9 @@ export const typeDef = gql`
   }
 
   type Mutation {
-    createCommunity(data: [CreateCommunity]): CreateResult
+    # createCommunity(data: [CreateCommunity]): CreateResult
     viewCommunity(data: ViewCommunity): Community
-    createMedia(data: [CreateMedia]): CreateResult
+    # createMedia(data: [CreateMedia]): CreateResult
     viewMedia(data: ViewMedia): Media
   }
 `

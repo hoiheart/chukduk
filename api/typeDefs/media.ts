@@ -12,13 +12,13 @@ export const typeDef = gql`
     views: Int!
   }
 
-  input CreateMedia {
-    no: String!,
-    url: String!,
-    category: String!,
-    title: String!,
-    thumb: String!
-  }
+  # input CreateMedia {
+  #   no: String!,
+  #   url: String!,
+  #   category: String!,
+  #   title: String!,
+  #   thumb: String!
+  # }
 
   input ViewMedia {
     no: String!

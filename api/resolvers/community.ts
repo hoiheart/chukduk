@@ -39,6 +39,7 @@ export const query = {
 }
 
 export const mutation = {
+  /*
   async createCommunity(root, { data }) {
     try {
       let counts = 0
@@ -73,6 +74,7 @@ export const mutation = {
       return e
     }
   },
+  */
   async viewCommunity(root, { data }) {
     try {
       const query = { bbs: data.bbs, no: data.no }

@@ -14,15 +14,15 @@ export const typeDef = gql`
     hasImage: Boolean
   }
 
-  input CreateCommunity {
-    bbs: String!,
-    no: String!,
-    url: String!,
-    category: String!,
-    title: String!
-    hasMovie: Boolean,
-    hasImage: Boolean
-  }
+  # input CreateCommunity {
+  #   bbs: String!,
+  #   no: String!,
+  #   url: String!,
+  #   category: String!,
+  #   title: String!
+  #   hasMovie: Boolean,
+  #   hasImage: Boolean
+  # }
 
   input ViewCommunity {
     bbs: String!,

@@ -30,6 +30,7 @@ export const query = {
 }
 
 export const mutation = {
+  /*
   async createMedia(root, { data }) {
     try {
       let counts = 0
@@ -59,6 +60,7 @@ export const mutation = {
       return e
     }
   },
+  */
   async viewMedia(root, { data }) {
     try {
       const query = { no: data.no }
