@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-const Footer: React.FunctionComponent = () => {
+const Footer = () => {
   return (
     <footer>
       <nav>
