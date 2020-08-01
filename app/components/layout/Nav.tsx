@@ -25,7 +25,7 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link href="/일정">
+          <Link href="/fixtures">
             <a>
               <AlarmIcon />
               일정
