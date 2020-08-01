@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer>
       <nav>
-        <Link href='/about'>축덕이란?</Link>
+        <Link href='/about'><a>축덕이란?</a></Link>
       </nav>
       <p className="copyright">
         Copyright 2020. Chukduk Lab. all right reserved.
