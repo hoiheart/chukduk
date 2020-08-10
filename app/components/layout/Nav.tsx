@@ -9,7 +9,7 @@ const Nav = () => {
     <nav>
       <ul>
         <li>
-          <Link href="/community">
+          <Link href="/">
             <a>
               <ForumIcon />
               커뮤니티

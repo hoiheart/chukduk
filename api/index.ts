@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import dotenv from 'dotenv'
 import { ApolloServer } from 'apollo-server-fastify'
 import mongoose from 'mongoose'
