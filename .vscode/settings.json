@@ -1,3 +1,7 @@
 {
-  "eslint.workingDirectories": ["./api", "./app"]
+  "eslint.enable": true,
+  "eslint.workingDirectories": ["./api", "./app"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
