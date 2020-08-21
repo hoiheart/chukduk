@@ -1,6 +1,6 @@
 import Title from '../components/layout/Title'
 import Tab from '../components/list/Tab'
-import Community from '../components/list/Community'
+import Media from '../components/list/Media'
 import More from '../components/list/More'
 import Search from '../components/list/Search'
 
@@ -9,7 +9,7 @@ const Index = () => {
     <>
       <Title />
       <Tab />
-      <Community />
+      <Media />
       <More />
       <Search />
     </>

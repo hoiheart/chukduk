@@ -37,7 +37,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <CssBaseline />
       <Header />
-      <Component {...pageProps} />
+      <main>
+        <Component {...pageProps} />
+      </main>
       <Footer />
     </ApolloProvider>
   )
