@@ -1,4 +1,14 @@
-scalar Date;
+scalar Date
+
+type Query {
+  getCommunityList(type: String, title: String, bbs: String, category: String, lastID: ID): [Community]
+  getMediaList(title: String, category: String, lastID: ID): [Media]
+}
+
+type Mutation {
+  viewCommunity(data: ViewCommunity): Community
+  viewMedia(data: ViewMedia): Media
+}
 
 type Community {
   id: ID!,
@@ -31,14 +41,4 @@ type Media {
 
 input ViewMedia {
   no: String!
-}
-
-type Query {
-  getCommunityList(type: String, title: String, bbs: String, category: String, lastID: ID): [Community]
-  getMediaList(title: String, category: String, lastID: ID): [Media]
-}
-
-type Mutation {
-  viewCommunity(data: ViewCommunity): Community
-  viewMedia(data: ViewMedia): Media
 }
