@@ -6,6 +6,7 @@ import { useApollo } from '../graphql/apollo'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
+import '../scss/app.scss'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo(pageProps.initialApolloState)

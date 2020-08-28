@@ -5,7 +5,7 @@ import Schedule from '../components/fixtures/Schedule'
 const Fixtures = () => {
   return (
     <>
-      <Title />
+      <Title text="일정" />
       <Date />
       <Schedule />
     </>

@@ -3,7 +3,7 @@ import Title from '../components/layout/Title'
 const About = () => {
   return (
     <>
-      <Title />
+      <Title text="축덕이란?" />
       <div className="about">
         <p>
           자주 들르는 축구 커뮤니티 소식!<br />

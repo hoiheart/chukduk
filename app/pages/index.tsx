@@ -7,8 +7,8 @@ import Search from '../components/list/Search'
 const Index = () => {
   return (
     <>
-      <Title />
-      <Tab />
+      <Title text="축덕" />
+      <Tab menu="community" />
       <Community />
       <More />
       <Search />
