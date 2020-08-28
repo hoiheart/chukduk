@@ -24,6 +24,10 @@ body {
   background-color: $color-menu !important;
 }
 
+img {
+  vertical-align: top;
+}
+
 a {
   text-decoration: none;
 }
@@ -63,6 +67,7 @@ header {
     z-index: 5;
     width: 100%;
     height: 60px;
+    font-size: 14px;
 
     ul {
       display: flex;

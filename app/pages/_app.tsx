@@ -3,7 +3,6 @@ import Head from 'next/head'
 import React from 'react'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { useApollo } from '../graphql/apollo'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 import '../scss/app.scss'
@@ -36,7 +35,6 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="keywords" content="축덕, 축덕닷넷, 축빠, 축톡, FM코리아, 싸줄, 싸커라인, 분데스매니아, 세리에매니아, 가생이, 뽐뿌, 스포츠, 축구, 풋볼,soccer, football" />
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap' />
       </Head>
-      <CssBaseline />
       <Header />
       <main>
         <Component {...pageProps} />

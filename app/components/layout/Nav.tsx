@@ -1,9 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import ForumIcon from '@material-ui/icons/Forum'
-import OndemandVideoIcon from '@material-ui/icons/OndemandVideo'
-import AlarmIcon from '@material-ui/icons/Alarm'
+import { Forum, OndemandVideo, Alarm } from '@material-ui/icons'
 
 const Nav = () => {
   const router = useRouter()
@@ -14,7 +12,7 @@ const Nav = () => {
         <li>
           <Link href="/">
             <a className={router.pathname === '/' ? 'active' : ''}>
-              <ForumIcon fontSize="small" />
+              <Forum fontSize="small" />
               커뮤니티
             </a>
           </Link>
@@ -22,7 +20,7 @@ const Nav = () => {
         <li>
           <Link href="/media">
             <a className={router.pathname === '/media' ? 'active' : ''}>
-              <OndemandVideoIcon fontSize="small" />
+              <OndemandVideo fontSize="small" />
               미디어
             </a>
           </Link>
@@ -30,7 +28,7 @@ const Nav = () => {
         <li>
           <Link href="/fixtures">
             <a className={router.pathname === '/fixtures' ? 'active' : ''}>
-              <AlarmIcon fontSize="small" />
+              <Alarm fontSize="small" />
               일정
             </a>
           </Link>

@@ -1,25 +1,16 @@
 
 import * as React from 'react'
-import { useState } from 'react'
-import Link, { LinkProps } from 'next/link'
-import { Omit } from '@material-ui/types'
-import MaterialTabs from '@material-ui/core/Tabs'
-import MaterialTab from '@material-ui/core/Tab'
+// import { useState } from 'react'
+import Link from 'next/link'
 
 type Menu = 'community' | 'media'
 
-const CustomTab = React.forwardRef<any, Omit<LinkProps, 'href'>>(
-  (props, href: LinkProps.Url) => (
-    <Link href={href} {...props} />
-  )
-)
-
 const Tab = ({ menu }: { menu: Menu }) => {
-  const [value, setValue] = useState(0)
+  // const [value, setValue] = useState(0)
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue)
-  }
+  // const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  //   setValue(newValue)
+  // }
 
   const categoriesMap = {
     community: [
@@ -48,21 +39,9 @@ const Tab = ({ menu }: { menu: Menu }) => {
   const categories = categoriesMap[menu]
 
   return (
-    <>
-      <MaterialTabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        variant="scrollable"
-        scrollButtons="auto"
-      >
-        <MaterialTab component={CustomTab} href="/" label="Item One" />
-      </MaterialTabs>
-      <div className="tab">
-        {categories.map((v) => <Link key={v.key} href={`${menu}/${v.key}`}><a>{v.text}</a></Link>)}
-      </div>
-    </>
+    <div className="tab">
+      {categories.map((v) => <Link key={v.key} href={`${menu}/${v.key}`}><a>{v.text}</a></Link>)}
+    </div>
   )
 }
 
