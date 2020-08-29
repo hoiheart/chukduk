@@ -1,6 +1,8 @@
+const path = require('path')
 const withCSS = require('@zeit/next-css')
+const withSass = require('@zeit/next-sass')
 
-module.exports = {
+module.exports = withSass(withCSS({
   async rewrites () {
     return [
       {
@@ -8,6 +10,9 @@ module.exports = {
         destination: 'http://localhost:3001'
       }
     ]
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'scss')]
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
@@ -22,14 +27,14 @@ module.exports = {
             callback()
           }
         },
-        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals)
       ]
 
       config.module.rules.unshift({
         test: antStyles,
-        use: 'null-loader',
+        use: 'null-loader'
       })
     }
     return config
   }
-}
+}))

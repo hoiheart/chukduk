@@ -2,7 +2,7 @@
 
 $color-menu: #222831;
 $color-menu-active: #11171d;
-$color-link: #25648f;
+$color-link: #1890ff;
 
 @mixin blind {
   position: absolute;
@@ -24,10 +24,6 @@ body {
   background-color: $color-menu !important;
 }
 
-img {
-  vertical-align: top;
-}
-
 a {
   text-decoration: none;
 }
@@ -36,7 +32,7 @@ a {
   min-height: 100vh;
   padding: 40px 0 60px;
   box-sizing: border-box;
-  color: #444;
+  color: #333;
 }
 
 header {
@@ -53,6 +49,12 @@ header {
     margin: 0;
     background-color: $color-menu;
     text-align: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     
     img {
       width: auto;
@@ -95,7 +97,8 @@ header {
         }
 
         svg {
-          margin-bottom: 3px;
+          margin-bottom: 8px;
+          font-size: 18px;
         }
       }
     }
@@ -113,10 +116,63 @@ main {
 
 footer {
   padding: 20px 0;
-  background-color: #eeeeee;
+  background-color: #f9f9f9;
   text-align: center;
+  font-size: 12px;
+
+  .copyright {
+    margin-top: 10px;
+  }
 
   a {
     color: $color-link;
+  }
+}
+
+.tab {
+  position: sticky;
+  top: 40px;
+}
+
+.am-tabs {
+  @media screen and (min-width: 1025px) {
+    .am-tabs-default-bar-content {
+      justify-content: space-evenly;
+    }
+
+    .am-tabs-default-bar-tab {
+      width: auto !important;
+      flex: 1 1 auto;
+    }
+  }
+
+  .am-tabs-default-bar-tab {
+    height: 40px !important;
+    padding: 0px 20px !important;
+    font-size: 14px !important;
+
+    &:after {
+      transition: 0.3s height, background-color;
+    }
+
+    a {
+      transition: 0.3s;
+      color: $color-menu;
+    }
+
+    &.am-tabs-default-bar-tab-active {
+      &:after {
+        height: 2px !important;
+        background-color: $color-link !important;
+      }
+
+      a {
+        color: $color-link;
+      }
+    }
+  }
+
+  .am-tabs-default-bar-underline {
+    display: none;
   }
 }
