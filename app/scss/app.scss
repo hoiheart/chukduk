@@ -135,20 +135,11 @@ footer {
 }
 
 .am-tabs {
-  @media screen and (min-width: 1025px) {
-    .am-tabs-default-bar-content {
-      justify-content: space-evenly;
-    }
-
-    .am-tabs-default-bar-tab {
-      width: auto !important;
-      flex: 1 1 auto;
-    }
-  }
-
   .am-tabs-default-bar-tab {
+    min-width: 105px;
     height: 40px !important;
-    padding: 0px 20px !important;
+    padding: 0px 10px !important;
+    white-space: nowrap;
     font-size: 14px !important;
 
     &:after {
