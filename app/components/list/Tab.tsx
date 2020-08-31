@@ -2,7 +2,6 @@
 import * as React from 'react'
 // import { useState } from 'react'
 import Link from 'next/link'
-import { Tabs } from 'antd-mobile'
 
 type Menu = 'community' | 'media'
 
@@ -20,8 +19,8 @@ const Tab = ({ menu }: { menu: Menu }) => {
       { href: '/community/weekly', title: 'Weekly' },
       { href: '/community/fmkorea', title: 'FM코리아' },
       { href: '/community/soccerline', title: '싸커라인' },
-      { href: '/community/bundes', title: '분데스' },
-      { href: '/community/seriea', title: '세리에' },
+      { href: '/community/bundes', title: '분데스매니아' },
+      { href: '/community/seriea', title: '세리에매니아' },
       { href: '/community/gasengi', title: '가생이' },
       { href: '/community/ppomppu', title: '뽐뿌' }
     ],
@@ -29,7 +28,7 @@ const Tab = ({ menu }: { menu: Menu }) => {
       { href: '/media', title: '전체' },
       { href: '/media/epl', title: 'EPL' },
       { href: '/media/primera', title: 'LaLiga' },
-      { href: '/media/bundesliga', title: 'Bundes' },
+      { href: '/media/bundesliga', title: 'Bundesliga' },
       { href: '/media/seria', title: 'SerieA' },
       { href: '/media/uefa', title: 'UEFA' },
       { href: '/media/epl', title: 'EPL' },
@@ -47,7 +46,7 @@ const Tab = ({ menu }: { menu: Menu }) => {
 
   return (
     <div className="tab">
-      <Tabs tabs={categories} renderTabBar={props => <Tabs.DefaultTabBar {...props} renderTab={TabLink} page={categories.length} />} />
+      {categories.map(v => <TabLink key={v.title} href={v.href} title={v.title} />)}
     </div>
   )
 }

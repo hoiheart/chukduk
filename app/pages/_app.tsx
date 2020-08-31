@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apolloClient'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
+import 'antd/dist/antd.css'
 import '../scss/app.scss'
 
 const App = ({ Component, pageProps }: AppProps) => {

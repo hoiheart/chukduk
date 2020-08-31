@@ -11,25 +11,25 @@ interface CommunityArgs {
 }
 
 export const query = {
-  async getCommunityList(parent, { type, title, bbs, category, lastID }: CommunityArgs) {
-    const page_size = 20
+  async getCommunityList (parent, { type, title, bbs, category, lastID }: CommunityArgs) {
+    const pageSize = 20
     const now = new Date(dayjs().format('YYYY-MM-DD HH:mm'))
     const yesterday = new Date(dayjs(now).add(-1, 'day').format('YYYY-MM-DD HH:mm'))
     const week = new Date(dayjs(now).add(-7, 'day').format('YYYY-MM-DD HH:mm'))
 
     const query = {
-      $and : [
+      $and: [
         { _id: lastID ? { $lt: lastID } : { $exists: true } },
-        { title : title ? { $regex: new RegExp(title, "im") } : { $exists: true } },
-        { bbs : bbs ? bbs : { $exists: true } },
-        { category : category ? category : { $exists: true } },
-        { date : type ? { $gt : type === 'daily' ? yesterday : week } : { $exists: true } },
-        { views: type ? { $gt : 0 } : { $exists: true } }
+        { title: title ? { $regex: new RegExp(title, 'im') } : { $exists: true } },
+        { bbs: bbs || { $exists: true } },
+        { category: category || { $exists: true } },
+        { date: type ? { $gt: type === 'daily' ? yesterday : week } : { $exists: true } },
+        { views: type ? { $gt: 0 } : { $exists: true } }
       ]
     }
 
     try {
-      const result = await community.find(query).sort(type ? { views: -1, _id: -1 } : { _id: -1 }).limit( page_size )
+      const result = await community.find(query).sort(type ? { views: -1, _id: -1 } : { _id: -1 }).limit(pageSize)
       return result
     } catch (e) {
       console.log(e)
@@ -75,7 +75,7 @@ export const mutation = {
     }
   },
   */
-  async viewCommunity(root, { data }) {
+  async viewCommunity (root, { data }) {
     try {
       const query = { bbs: data.bbs, no: data.no }
       await community.updateOne(query, {
