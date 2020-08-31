@@ -11,6 +11,11 @@ module.exports = withSass(withCSS({
       }
     ]
   },
+  exportPathMap: async function () {
+    return {
+      '/': { page: '/community' }
+    }
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'scss')]
   },

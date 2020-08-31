@@ -1,4 +1,8 @@
 const Community = () => {
+  const list = [
+
+  ]
+
   return (
     <>
       Community
