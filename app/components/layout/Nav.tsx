@@ -10,8 +10,8 @@ const Nav = () => {
     <nav>
       <ul>
         <li>
-          <Link href="/">
-            <a className={router.pathname === '/' ? 'active' : ''}>
+          <Link href="/community" as="/">
+            <a className={router.pathname === '/' || router.pathname.match(/^\/community/) ? 'active' : ''}>
               <RobotFilled />
               커뮤니티
             </a>
@@ -19,7 +19,7 @@ const Nav = () => {
         </li>
         <li>
           <Link href="/media">
-            <a className={router.pathname === '/media' ? 'active' : ''}>
+            <a className={router.pathname.match(/^\/media/) ? 'active' : ''}>
               <PlayCircleFilled />
               미디어
             </a>
@@ -27,7 +27,7 @@ const Nav = () => {
         </li>
         <li>
           <Link href="/fixtures">
-            <a className={router.pathname === '/fixtures' ? 'active' : ''}>
+            <a className={router.pathname.match(/^\/fixtures/) ? 'active' : ''}>
               <CalendarFilled />
               일정
             </a>

@@ -1,18 +1,19 @@
 
-import * as React from 'react'
-// import { useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
+import { Menu as AntdMenu, Dropdown, Button } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
 
-type Menu = 'community' | 'media'
+type Page = 'community' | 'media'
 
-const Tab = ({ menu }: { menu: Menu }) => {
-  // const [value, setValue] = useState(0)
+const Menu = ({ page }: { page: Page }) => {
+  const [value, setValue] = useState(0)
 
   // const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
   //   setValue(newValue)
   // }
 
-  const categoriesMap = {
+  const menuData = {
     community: [
       { href: '/', title: '전체' },
       { href: '/community/daily', title: 'Daily' },
@@ -36,19 +37,25 @@ const Tab = ({ menu }: { menu: Menu }) => {
     ]
   }
 
-  const categories = categoriesMap[menu]
+  const menuList = menuData[page]
 
-  const TabLink = ({ href, title }) => {
-    return (
-      <Link href={`${href}`}><a>{title}</a></Link>
-    )
-  }
+  const MenuItems = (
+    <AntdMenu>
+      {menuList?.map(v => (
+        <AntdMenu.Item key={v.title}>
+          <Link href={v.href}><a>{v.title}</a></Link>
+        </AntdMenu.Item>
+      ))}
+    </AntdMenu>
+  )
 
   return (
-    <div className="tab">
-      {categories.map(v => <TabLink key={v.title} href={v.href} title={v.title} />)}
+    <div className="menu">
+      <Dropdown overlay={MenuItems} trigger={['click']} placement="bottomRight">
+        <Button>{menuList?.[value]?.title} <DownOutlined /></Button>
+      </Dropdown>
     </div>
   )
 }
 
-export default Tab
+export default Menu

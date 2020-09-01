@@ -1,6 +1,11 @@
+import { Divider, Typography } from 'antd'
+
 const Title = ({ text }: { text: string }) => {
   return (
-    <h2>{ text }</h2>
+    <>
+      <Typography.Title level={2}>{ text }</Typography.Title>
+      <Divider />
+    </>
   )
 }
 

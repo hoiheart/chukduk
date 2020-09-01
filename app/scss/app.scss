@@ -43,7 +43,7 @@ header {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 5;
+    z-index: 50000;
     width: 100%;
     height: 40px;
     margin: 0;
@@ -66,7 +66,7 @@ header {
     position: fixed;
     left: 0;
     bottom: 0;
-    z-index: 5;
+    z-index: 50000;
     width: 100%;
     height: 60px;
     font-size: 14px;
@@ -106,11 +106,24 @@ header {
 }
 
 main {
+  position: relative;
   min-height: calc(100vh - 100px);
+  padding: 30px 20px;
+  box-sizing: border-box;
   background-color: #fff;
 
-  h2 {
-    @include blind;
+  h2.ant-typography {
+    font-size: 18px;
+
+    + .ant-divider-horizontal {
+      margin: 15px 0 25px;
+    }
+  }
+
+  .menu {
+    position: absolute;
+    right: 20px;
+    top: 25px;
   }
 }
 
