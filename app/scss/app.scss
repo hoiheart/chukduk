@@ -182,9 +182,12 @@ footer {
 .about {
   p {
     margin: 15px 0;
+    line-height: 2;
   }
   
   em {
     color: $color-primary;
+    font-size: 17px;
+    font-weight: bold;
   }
 }
