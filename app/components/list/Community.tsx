@@ -1,6 +1,8 @@
-import React from 'react'
-import { List, Space, Tag } from 'antd'
-import { CalendarOutlined, EyeOutlined } from '@ant-design/icons'
+import { createElement } from 'react'
+import Link from 'next/link'
+import { List, Space } from 'antd'
+import { CalendarOutlined, EyeOutlined, FolderOutlined } from '@ant-design/icons'
+
 const Community = () => {
   const listData = [
     { _id: { $oid: '5f2325b38e9b1eb09e4f698f' }, bbs: 'fmkorea', no: '3013927324', category: 'fm.best', date: { $date: { $numberLong: '1596138930885' } }, hasImage: true, hasMovie: false, title: '이연복 아드님 엄청 소박하게 사시네 ㅋㅋㅋ', url: 'https://www.fmkorea.com/best/3013927324', views: { $numberInt: '0' } },
@@ -9,30 +11,33 @@ const Community = () => {
 
   const IconText = ({ icon, text }) => (
     <Space>
-      {React.createElement(icon)}
+      {createElement(icon)}
       {text}
     </Space>
   )
 
   return (
-    <List
-      itemLayout="vertical"
-      dataSource={listData}
-      renderItem={item => (
-        <List.Item
-          key={item.title}
-          actions={[
-            <IconText icon={CalendarOutlined} text="2020-09-01" key="date" />,
-            <IconText icon={EyeOutlined} text="0" key="views" />
-          ]}
-        >
-          <Tag key={item.category}>{item.category}</Tag>
-          <List.Item.Meta
-            title={<a href={item.url}>{item.title}</a>}
-          />
-        </List.Item>
-      )}
-    />
+    <div className="list-community">
+      <List
+        itemLayout="vertical"
+        dataSource={listData}
+        renderItem={item => (
+
+          <List.Item
+            key={item.title}
+            actions={[
+              <IconText icon={FolderOutlined} text={item.category} key="category" />,
+              <IconText icon={EyeOutlined} text="0" key="views" />,
+              <IconText icon={CalendarOutlined} text="2020-09-01" key="date" />
+            ]}
+          >
+            <List.Item.Meta
+              title={<Link href={item.url}><a>{item.title}</a></Link>}
+            />
+          </List.Item>
+        )}
+      />
+    </div>
   )
 }
 

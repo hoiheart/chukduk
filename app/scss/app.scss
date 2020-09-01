@@ -2,7 +2,9 @@
 
 $color-menu: #222831;
 $color-menu-active: #11171d;
-$color-link: #1890ff;
+$color-primary: #1890ff;
+
+$nav-height: 70px;
 
 @mixin blind {
   position: absolute;
@@ -21,7 +23,8 @@ html {
 }
 
 body {
-  background-color: $color-menu !important;
+  background-color: #f9f9f9;
+  overflow-y: scroll;
 }
 
 a {
@@ -30,7 +33,7 @@ a {
 
 #__next {
   min-height: 100vh;
-  padding: 40px 0 60px;
+  padding: 0 0 $nav-height;
   box-sizing: border-box;
   color: #333;
 }
@@ -40,12 +43,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
+    position: sticky;
     left: 0;
     top: 0;
     z-index: 50000;
     width: 100%;
-    height: 40px;
+    height: 50px;
     margin: 0;
     background-color: $color-menu;
     text-align: center;
@@ -58,7 +61,7 @@ header {
     
     img {
       width: auto;
-      height: 22px;
+      height: 24px;
     }
   }
 
@@ -68,12 +71,12 @@ header {
     bottom: 0;
     z-index: 50000;
     width: 100%;
-    height: 60px;
+    height: $nav-height;
     font-size: 14px;
 
     ul {
       display: flex;
-      height: 60px;
+      height: $nav-height;
       background-color: $color-menu;
     }
 
@@ -107,8 +110,8 @@ header {
 
 main {
   position: relative;
-  min-height: calc(100vh - 100px);
-  padding: 30px 20px;
+  min-height: calc(100vh - #{$nav-height});
+  padding: 20px 20px;
   box-sizing: border-box;
   background-color: #fff;
 
@@ -123,7 +126,7 @@ main {
   .menu {
     position: absolute;
     right: 20px;
-    top: 25px;
+    top: 13px;
   }
 }
 
@@ -138,45 +141,50 @@ footer {
   }
 
   a {
-    color: $color-link;
+    color: $color-primary;
   }
 }
 
-.tab {
-  position: sticky;
-  top: 40px;
-}
+.list-community {
+  margin-top: -25px;
 
-.am-tabs {
-  .am-tabs-default-bar-tab {
-    min-width: 105px;
-    height: 40px !important;
-    padding: 0px 10px !important;
-    white-space: nowrap;
-    font-size: 14px !important;
+  .ant-list-item {
+    padding: 0 0 10px;
+  }
 
-    &:after {
-      transition: 0.3s height, background-color;
-    }
+  .ant-list-item:last-child {
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .ant-list-item-meta-title {
+    margin-bottom: 0;
 
     a {
-      transition: 0.3s;
-      color: $color-menu;
-    }
-
-    &.am-tabs-default-bar-tab-active {
-      &:after {
-        height: 2px !important;
-        background-color: $color-link !important;
-      }
-
-      a {
-        color: $color-link;
-      }
+      display: block;
+      padding: 10px 0 5px;
     }
   }
 
-  .am-tabs-default-bar-underline {
-    display: none;
+  .ant-list-item-meta,
+  .ant-list-item-action {
+    margin: 0;
+  }
+}
+
+.more {
+  margin-top: -1px;
+}
+
+.search {
+  margin-top: 30px;
+}
+
+.about {
+  p {
+    margin: 15px 0;
+  }
+  
+  em {
+    color: $color-primary;
   }
 }
