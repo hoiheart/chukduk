@@ -21,6 +21,6 @@ export const typeDef = gql`
   # }
 
   input ViewMedia {
-    no: String!
+    id: ID!
   }
 `

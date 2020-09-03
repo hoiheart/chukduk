@@ -6,12 +6,11 @@ interface CommunityArgs {
   type: 'daily' | 'weekly' | null,
   title: string | null,
   bbs: string | null,
-  category: string | null,
   lastID: mongoose.Types.ObjectId | null
 }
 
 export const query = {
-  async getCommunityList (parent, { type, title, bbs, category, lastID }: CommunityArgs) {
+  async getCommunityList (parent, { type, title, bbs, lastID }: CommunityArgs) {
     const pageSize = 20
     const now = new Date(dayjs().format('YYYY-MM-DD HH:mm'))
     const yesterday = new Date(dayjs(now).add(-1, 'day').format('YYYY-MM-DD HH:mm'))
@@ -22,7 +21,6 @@ export const query = {
         { _id: lastID ? { $lt: lastID } : { $exists: true } },
         { title: title ? { $regex: new RegExp(title, 'im') } : { $exists: true } },
         { bbs: bbs || { $exists: true } },
-        { category: category || { $exists: true } },
         { date: type ? { $gt: type === 'daily' ? yesterday : week } : { $exists: true } },
         { views: type ? { $gt: 0 } : { $exists: true } }
       ]
@@ -77,7 +75,7 @@ export const mutation = {
   */
   async viewCommunity (root, { data }) {
     try {
-      const query = { bbs: data.bbs, no: data.no }
+      const query = { id: data.id }
       await community.updateOne(query, {
         $inc: { views: 1 }
       })

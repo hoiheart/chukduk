@@ -25,7 +25,6 @@ export const typeDef = gql`
   # }
 
   input ViewCommunity {
-    bbs: String!,
-    no: String!
+    id: ID!
   }
 `
