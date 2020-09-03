@@ -11,15 +11,7 @@ function createApolloClient () {
       uri: 'http://localhost:3001', // Server URL (must be absolute)
       credentials: 'same-origin' // Additional fetch() options like `credentials` or `headers`
     }),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            allPosts: concatPagination()
-          }
-        }
-      }
-    })
+    cache: new InMemoryCache()
   })
 }
 
