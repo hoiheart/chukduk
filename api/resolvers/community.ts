@@ -30,8 +30,8 @@ export const query = {
       const size = await community.countDocuments(query)
       const result = await community.find(query).sort(type ? { views: -1, _id: -1 } : { _id: -1 }).limit(pageSize)
       return {
-        size,
-        result
+        result,
+        isLast: size <= pageSize
       }
     } catch (e) {
       console.log(e)

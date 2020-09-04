@@ -23,8 +23,8 @@ export const query = {
       const size = await media.countDocuments(query)
       const result = await media.find(query).sort({ _id: -1 }).limit(pageSize)
       return {
-        size,
-        result
+        result,
+        isLast: size <= pageSize
       }
     } catch (e) {
       console.log(e)

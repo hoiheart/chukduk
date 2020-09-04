@@ -15,8 +15,8 @@ export const typeDef = gql`
   }
 
   type CommunityList {
-    size: Int,
-    result: [Community]
+    result: [Community],
+    isLast: Boolean
   }
 
   # input CreateCommunity {

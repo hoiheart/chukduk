@@ -13,8 +13,8 @@ export const typeDef = gql`
   }
 
   type MediaList {
-    size: Int,
-    result: [Media]
+    result: [Media],
+    isLast: Boolean
   }
 
   # input CreateMedia {
