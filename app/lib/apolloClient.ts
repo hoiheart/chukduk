@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
-import { concatPagination } from '@apollo/client/utilities'
 
 let apolloClient
 
