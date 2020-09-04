@@ -21,7 +21,6 @@ interface ListItem {
 const QUERY = gql`
   query GetCommunityList ($type: String, $title: String, $bbs: String, $lastID: ID) {
     getCommunityList (type: $type, title: $title, bbs: $bbs, lastID: $lastID) {
-      size,
       result {
         id,
         title,
@@ -30,7 +29,8 @@ const QUERY = gql`
         url,
         date,
         views
-      }
+      },
+      isLast
     }
   }
 `
@@ -41,10 +41,8 @@ const Community = () => {
   const category = String(router.query.category)
   const type = category.match(/(daily|weekly)/) ? category : ''
   const bbs = (router.query.category && !category.match(/(daily|weekly)/)) ? category : ''
-  let isLastPage = false
-  isLastPage = false
 
-  const { loading, data, fetchMore } = useQuery(
+  const { data, loading, fetchMore } = useQuery(
     QUERY,
     {
       variables: {
@@ -52,8 +50,7 @@ const Community = () => {
         type,
         bbs,
         lastID: ''
-      },
-      fetchPolicy: 'cache-and-network'
+      }
     }
   )
 
@@ -61,13 +58,17 @@ const Community = () => {
     return (
       <>
         <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
       </>
     )
   }
 
   let listData: Array<ListItem> = []
 
-  if (data.getCommunityList?.result) {
+  if (data) {
     listData = data.getCommunityList.result
   }
 
@@ -83,7 +84,7 @@ const Community = () => {
       <div className="list-community">
         <List
           itemLayout="vertical"
-          dataSource={listData || []}
+          dataSource={listData}
           renderItem={item => (
             <List.Item
               key={item.id}
@@ -101,11 +102,10 @@ const Community = () => {
         />
       </div>
       {
-        (listData.length && !isLastPage)
+        (listData.length && !data.getCommunityList.isLast)
           ? <More fetchMore={fetchMore} lastID={listData[listData.length - 1].id} query="getCommunityList" />
           : ''
       }
-
       <Search />
     </>
   )

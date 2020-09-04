@@ -1,22 +1,32 @@
+import { useState } from 'react'
 import { Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 
 const More = ({ fetchMore, lastID, query }) => {
+  const [loading, setLoading] = useState(false)
+
   return (
     <div className="more">
-      <Button block style={{ height: '40px' }} onClick={() => {
+      <Button block loading={loading} style={{ height: '40px' }} onClick={() => {
+        setLoading(true)
+
         fetchMore({
           variables: {
             lastID
           },
-          updateQuery: (prev, { fetchMoreResult }) => {
-            if (!fetchMoreResult) return prev
-            return Object.assign({}, prev, {
+          updateQuery: (previousResult, { fetchMoreResult }) => {
+            setLoading(false)
+
+            if (!fetchMoreResult) return previousResult
+
+            return {
+              ...previousResult,
               [query]: {
-                total: fetchMoreResult[query].total,
-                result: [...prev[query].result, ...fetchMoreResult[query].result]
+                ...previousResult[query],
+                isLast: fetchMoreResult[query].isLast,
+                result: [...previousResult[query].result, ...fetchMoreResult[query].result]
               }
-            })
+            }
           }
         })
       }}>더 보기 <DownOutlined /></Button>
