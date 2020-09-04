@@ -25,7 +25,7 @@ const Media = () => {
               <a>
                 <Card
                   hoverable
-                  cover={<img alt="example" lazy src={item.thumb} />}>
+                  cover={<img alt="example" loading="lazy" src={item.thumb} />}>
                   <Card.Meta title={item.title} description={[
                     <IconText icon={FolderOutlined} text={item.category} key="category" />,
                     <Divider type="vertical" key="divider" />,

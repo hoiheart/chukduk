@@ -1,7 +1,8 @@
 import { createElement, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useQuery, gql } from '@apollo/client'
-import { List, Space } from 'antd'
+import { List, Space, Skeleton } from 'antd'
 import { CalendarOutlined, EyeOutlined, FolderOutlined } from '@ant-design/icons'
 import { getTime } from '../../lib/time'
 import More from './More'
@@ -20,50 +21,54 @@ interface ListItem {
 const QUERY = gql`
   query GetCommunityList ($type: String, $title: String, $bbs: String, $lastID: ID) {
     getCommunityList (type: $type, title: $title, bbs: $bbs, lastID: $lastID) {
-      id,
-      title,
-      bbs,
-      category,
-      url,
-      date,
-      views
+      size,
+      result {
+        id,
+        title,
+        bbs,
+        category,
+        url,
+        date,
+        views
+      }
     }
   }
 `
 
 const Community = () => {
-  const [title, setTitle] = useState('')
-  const [lastID, setLastID] = useState('')
+  const router = useRouter()
 
-  const { loading, error, data, fetchMore } = useQuery(
+  const category = String(router.query.category)
+  const type = category.match(/(daily|weekly)/) ? category : ''
+  const bbs = (router.query.category && !category.match(/(daily|weekly)/)) ? category : ''
+  let isLastPage = false
+  isLastPage = false
+
+  const { loading, data, fetchMore } = useQuery(
     QUERY,
     {
       variables: {
         title: '',
-        type: '',
-        bbs: '',
+        type,
+        bbs,
         lastID: ''
-      }
+      },
+      fetchPolicy: 'cache-and-network'
     }
   )
 
   if (loading) {
     return (
-      <div className="loading">loading</div>
+      <>
+        <Skeleton active />
+      </>
     )
   }
 
-  if (error) {
-    return (
-      <div className="error">error</div>
-    )
-  }
+  let listData: Array<ListItem> = []
 
-  const listData: Array<ListItem> = data.getCommunityList
-
-  if (listData.length) {
-    // setLastID(listData[listData.length - 1].id)
-    // setLastID(listData[listData.length - 1].id)
+  if (data.getCommunityList?.result) {
+    listData = data.getCommunityList.result
   }
 
   const IconText = ({ icon, text }) => (
@@ -78,13 +83,13 @@ const Community = () => {
       <div className="list-community">
         <List
           itemLayout="vertical"
-          dataSource={listData}
+          dataSource={listData || []}
           renderItem={item => (
             <List.Item
               key={item.id}
               actions={[
                 <IconText icon={FolderOutlined} text={`${item.bbs}${item.category ? ` - ${item.category}` : ''}`} key="bbs" />,
-                <IconText icon={EyeOutlined} text="0" key="views" />,
+                <IconText icon={EyeOutlined} text={item.views} key="views" />,
                 <IconText icon={CalendarOutlined} text={getTime(item.date)} key="date" />
               ]}
             >
@@ -95,7 +100,12 @@ const Community = () => {
           )}
         />
       </div>
-      <More />
+      {
+        (listData.length && !isLastPage)
+          ? <More fetchMore={fetchMore} lastID={listData[listData.length - 1].id} query="getCommunityList" />
+          : ''
+      }
+
       <Search />
     </>
   )
