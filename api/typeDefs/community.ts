@@ -14,6 +14,11 @@ export const typeDef = gql`
     hasImage: Boolean
   }
 
+  type CommunityList {
+    size: Int,
+    result: [Community]
+  }
+
   # input CreateCommunity {
   #   bbs: String!,
   #   no: String!,

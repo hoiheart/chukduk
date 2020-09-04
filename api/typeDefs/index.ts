@@ -4,8 +4,8 @@ export const typeDef = gql`
   scalar Date
 
   type Query {
-    getCommunityList(type: String, title: String, bbs: String, category: String, lastID: ID): [Community]
-    getMediaList(title: String, category: String, lastID: ID): [Media]
+    getCommunityList(type: String, title: String, bbs: String, category: String, lastID: ID): CommunityList
+    getMediaList(title: String, category: String, lastID: ID): MediaList
   }
 
   type CreateResult {

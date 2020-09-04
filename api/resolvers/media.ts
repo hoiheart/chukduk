@@ -9,7 +9,7 @@ interface MediaArgs {
 
 export const query = {
   async getMediaList (parent, { title, category, lastID }: MediaArgs) {
-    const page_size = 10
+    const pageSize = 10
 
     const query = {
       $and: [
@@ -20,8 +20,12 @@ export const query = {
     }
 
     try {
-      const result = await media.find(query).sort({ _id: -1 }).limit(page_size)
-      return result
+      const size = await media.countDocuments(query)
+      const result = await media.find(query).sort({ _id: -1 }).limit(pageSize)
+      return {
+        size,
+        result
+      }
     } catch (e) {
       console.log(e)
       return e

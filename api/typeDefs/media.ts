@@ -12,6 +12,11 @@ export const typeDef = gql`
     views: Int!
   }
 
+  type MediaList {
+    size: Int,
+    result: [Media]
+  }
+
   # input CreateMedia {
   #   no: String!,
   #   url: String!,
