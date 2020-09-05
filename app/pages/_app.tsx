@@ -15,6 +15,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>축덕</title>
         <meta charSet='utf-8' />
+        <link rel="shortcut Icon" href="/favicon.ico" type="image/x-icon" />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <meta name='robots' content='index, follow' />
         <meta name="google-site-verification" content="zYbXj849NBlArZOtNJ7I1vEuFl-F6PRnUdRpqBYs-Ec" />

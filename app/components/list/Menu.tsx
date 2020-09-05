@@ -31,8 +31,9 @@ const Menu = ({ page }: { page: Page }) => {
       { href: '/media/[category]', as: '/media/primera', title: 'LaLiga' },
       { href: '/media/[category]', as: '/media/bundesliga', title: 'Bundesliga' },
       { href: '/media/[category]', as: '/media/seria', title: 'SerieA' },
-      { href: '/media/[category]', as: '/media/uefa', title: 'UEFA' },
-      { href: '/media/[category]', as: '/media/epl', title: 'EPL' },
+      { href: '/media/[category]', as: '/media/champs', title: '챔피언스리그' },
+      { href: '/media/[category]', as: '/media/europa', title: '유로파리그' },
+      { href: '/media/[category]', as: '/media/facup', title: 'FA컵' },
       { href: '/media/[category]', as: '/media/etc', title: '기타' }
     ]
   }

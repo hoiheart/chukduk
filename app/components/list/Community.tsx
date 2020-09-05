@@ -108,8 +108,7 @@ const Community = () => {
               <List.Item.Meta
                 title={<Link href={item.url}><a target="_blank" onClick={() => {
                   viewCommunity({ variables: { id: item.id } })
-                }
-                }>{item.title}</a></Link>}
+                }}>{item.title}</a></Link>}
               />
             </List.Item>
           )}

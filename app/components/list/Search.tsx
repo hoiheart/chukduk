@@ -6,10 +6,22 @@ const Search = () => {
   const router = useRouter()
   const [value, setValue] = useState(router.query.search || '')
 
+  const query = {
+    search: value
+  }
+
   const submit = () => {
-    router.push({
-      query: { search: value }
-    })
+    if (!value) {
+      router.push(router.pathname, router.asPath)
+    } else {
+      router.push({
+        pathname: router.pathname,
+        query: { ...query }
+      }, {
+        pathname: router.asPath,
+        query: { ...query }
+      })
+    }
   }
 
   return (
