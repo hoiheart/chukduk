@@ -36,7 +36,7 @@ const QUERY = gql`
 `
 
 const MUTATION = gql`
-  mutation ViewCommunity($id: String!) {
+  mutation ViewCommunity ($id: ID!) {
     viewCommunity (id: $id) {
       id
       views
@@ -55,7 +55,7 @@ const Community = () => {
     QUERY,
     {
       variables: {
-        title: '',
+        title: router.query.search || '',
         type,
         bbs,
         lastID: ''
@@ -63,9 +63,7 @@ const Community = () => {
     }
   )
 
-  const updateViews = (id: string) => {
-
-  }
+  const [viewCommunity] = useMutation(MUTATION)
 
   if (loading) {
     return (
@@ -108,7 +106,10 @@ const Community = () => {
               ]}
             >
               <List.Item.Meta
-                title={<Link href={item.url} target="_blank" onClick={() => updateViews(item.id)}><a>{item.title}</a></Link>}
+                title={<Link href={item.url}><a target="_blank" onClick={() => {
+                  viewCommunity({ variables: { id: item.id } })
+                }
+                }>{item.title}</a></Link>}
               />
             </List.Item>
           )}

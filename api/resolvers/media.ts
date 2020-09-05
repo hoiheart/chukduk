@@ -65,9 +65,9 @@ export const mutation = {
     }
   },
   */
-  async viewMedia (root, { _id }) {
+  async viewMedia (root, { id }) {
     try {
-      const query = { _id }
+      const query = { _id: id }
       await media.updateOne(query, {
         $inc: { views: 1 }
       })
