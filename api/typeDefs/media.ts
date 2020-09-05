@@ -24,8 +24,4 @@ export const typeDef = gql`
   #   title: String!,
   #   thumb: String!
   # }
-
-  input ViewMedia {
-    id: ID!
-  }
 `

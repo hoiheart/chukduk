@@ -1,7 +1,7 @@
-import { createElement, useState } from 'react'
+import { createElement } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useQuery, gql } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import { List, Space, Skeleton } from 'antd'
 import { CalendarOutlined, EyeOutlined, FolderOutlined } from '@ant-design/icons'
 import { getTime } from '../../lib/time'
@@ -35,6 +35,15 @@ const QUERY = gql`
   }
 `
 
+const MUTATION = gql`
+  mutation ViewCommunity($id: String!) {
+    viewCommunity (id: $id) {
+      id
+      views
+    }
+  }
+`
+
 const Community = () => {
   const router = useRouter()
 
@@ -53,6 +62,10 @@ const Community = () => {
       }
     }
   )
+
+  const updateViews = (id: string) => {
+
+  }
 
   if (loading) {
     return (
@@ -95,7 +108,7 @@ const Community = () => {
               ]}
             >
               <List.Item.Meta
-                title={<Link href={item.url}><a>{item.title}</a></Link>}
+                title={<Link href={item.url} target="_blank" onClick={() => updateViews(item.id)}><a>{item.title}</a></Link>}
               />
             </List.Item>
           )}

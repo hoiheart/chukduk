@@ -3,5 +3,8 @@
   "eslint.workingDirectories": ["./api", "./app"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "conventionalCommits.scopes": [
+    "api"
+  ]
 }

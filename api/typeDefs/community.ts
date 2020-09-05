@@ -28,8 +28,4 @@ export const typeDef = gql`
   #   hasMovie: Boolean,
   #   hasImage: Boolean
   # }
-
-  input ViewCommunity {
-    id: ID!
-  }
 `

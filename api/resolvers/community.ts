@@ -77,9 +77,9 @@ export const mutation = {
     }
   },
   */
-  async viewCommunity (root, { data }) {
+  async viewCommunity (root, { _id }) {
     try {
-      const query = { id: data.id }
+      const query = { _id }
       await community.updateOne(query, {
         $inc: { views: 1 }
       })
