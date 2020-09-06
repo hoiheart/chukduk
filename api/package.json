@@ -16,6 +16,7 @@
     "@types/mongoose": "^5.7.34",
     "@types/node": "^12.12.53",
     "apollo-server-fastify": "^2.16.1",
+    "axios": "^0.20.0",
     "cross-env": "^7.0.0",
     "dayjs": "^1.8.31",
     "dotenv": "^8.2.0",

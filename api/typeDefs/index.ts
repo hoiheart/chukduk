@@ -6,6 +6,7 @@ export const typeDef = gql`
   type Query {
     getCommunityList(type: String, title: String, bbs: String, category: String, lastID: ID): CommunityList
     getMediaList(title: String, category: String, lastID: ID): MediaList
+    getScheduleList(date: String, category: String): ScheduleList
   }
 
   type CreateResult {
