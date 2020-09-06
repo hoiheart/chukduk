@@ -1,12 +1,13 @@
+import Link from 'next/link'
 import { Button } from 'antd'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 
-const Fixtures = () => {
+const Fixtures = ({ title, prev, next }) => {
   return (
     <div className="date">
-      <Button shape="circle" icon={<ArrowLeftOutlined />} />
-      <h3>2020년 9월 3일 (목)</h3>
-      <Button shape="circle" icon={<ArrowRightOutlined />} />
+      <Link href="/fixtures/[date]" as={`/fixtures/${prev}`}><a><Button shape="circle" icon={<ArrowLeftOutlined />} /></a></Link>
+      <h3>{title}</h3>
+      <Link href="/fixtures/[date]" as={`/fixtures/${next}`}><a><Button shape="circle" icon={<ArrowRightOutlined />} /></a></Link>
     </div>
   )
 }

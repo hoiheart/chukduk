@@ -9,10 +9,6 @@ type Page = 'community' | 'media'
 const Menu = ({ page }: { page: Page }) => {
   const [value, setValue] = useState(0)
 
-  // const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-  //   setValue(newValue)
-  // }
-
   const menuData = {
     community: [
       { href: '/community', as: '/', title: '전체' },
@@ -34,7 +30,8 @@ const Menu = ({ page }: { page: Page }) => {
       { href: '/media/[category]', as: '/media/champs', title: '챔피언스리그' },
       { href: '/media/[category]', as: '/media/europa', title: '유로파리그' },
       { href: '/media/[category]', as: '/media/facup', title: 'FA컵' },
-      { href: '/media/[category]', as: '/media/etc', title: '기타' }
+      { href: '/media/[category]', as: '/media/kleague', title: 'K리그' },
+      { href: '/media/[category]', as: '/media/amatch', title: 'A매치' }
     ]
   }
 
@@ -42,9 +39,9 @@ const Menu = ({ page }: { page: Page }) => {
 
   const MenuItems = (
     <AntdMenu>
-      {menuList?.map(v => (
+      {menuList?.map((v, index) => (
         <AntdMenu.Item key={v.title}>
-          <Link href={v.href} as={v.as}><a>{v.title}</a></Link>
+          <Link href={v.href} as={v.as}><a onClick={() => setValue(index)}>{v.title}</a></Link>
         </AntdMenu.Item>
       ))}
     </AntdMenu>

@@ -88,6 +88,18 @@ const Media = () => {
     </Space>
   )
 
+  const categoryMap = {
+    epl: 'EPL',
+    primera: 'LaLiga',
+    bundes: 'Bundesliga',
+    seriea: 'SerieA',
+    chaps: '챔피언스리그',
+    europa: '유로파리그',
+    facup: 'FA컵',
+    kleague: 'K리그',
+    amatch: 'A매치'
+  }
+
   return (
     <>
       <div className="list-media">
@@ -102,7 +114,7 @@ const Media = () => {
                     hoverable
                     cover={<img alt="example" loading="lazy" src={item.thumb} />}>
                     <Card.Meta title={item.title} description={[
-                      <IconText icon={FolderOutlined} text={item.category} key="category" />,
+                      <IconText icon={FolderOutlined} text={categoryMap[item.category]} key="category" />,
                       <Divider type="vertical" key="divider1" />,
                       <IconText icon={EyeOutlined} text={item.views} key="views" />,
                       <Divider type="vertical" key="divider2" />,

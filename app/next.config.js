@@ -1,3 +1,7 @@
+const dotenv = require('dotenv')
+
+dotenv.config({ path: '../.env' })
+
 module.exports = {
   async rewrites () {
     return [

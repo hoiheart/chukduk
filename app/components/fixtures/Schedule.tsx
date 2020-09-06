@@ -1,64 +1,118 @@
 import Link from 'next/link'
-import { List, Tag } from 'antd'
+import { gql, useQuery } from '@apollo/client'
+import { List, Tag, Skeleton, Empty } from 'antd'
 import dayjs from 'dayjs'
-import world from './mock.world.json'
-import korea from './mock.korea.json'
 
-const Schedule = () => {
-  const listWorldData = world.scheduleMap
-  const listKoreaData = korea.scheduleMap.filter(match => match.key.match(/(K리그1)/))
+interface League {
+  key: string
+  categoryId: string
+  scheduleList: {
+    homeTeamShortName: string
+    homeTeamScore: number
+    statusInfo: string
+    gameDateTime: string
+    awayTeamShortName: string
+    awayTeamScore: number
+  }[]
+}
+
+const QUERY = gql`
+  query GetScheduleList ($date: String) {
+    getScheduleList (date: $date) {
+      result {
+        key,
+        categoryId,
+        scheduleList {
+          homeTeamShortName,
+          homeTeamScore,
+          statusInfo,
+          gameDateTime,
+          awayTeamShortName,
+          awayTeamScore
+        }
+      }
+    }
+  }
+`
+
+const Schedule = ({ date }) => {
+  const { data, loading } = useQuery(
+    QUERY,
+    {
+      variables: {
+        date
+      }
+    }
+  )
+
+  if (loading) {
+    return (
+      <>
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+      </>
+    )
+  }
+
+  let listData: Array<League> = []
+
+  if (data) {
+    listData = data.getScheduleList.result
+  }
+
+  const color = (info) => {
+    if (info === '경기중') return 'red'
+    if (info === '경기전') return 'green'
+    return 'blue'
+  }
 
   const Match = ({ match }) => (
-    <a>
+    <>
       <div className="home">
         <span className="name">{match.homeTeamShortName}</span>
         <span className="score">{match.homeTeamScore}</span>
       </div>
       <div className="info">
-        <span className="status"><Tag color="green">{match.statusInfo}</Tag></span>
+        <span className="status"><Tag color={color(match.statusInfo)}>{match.statusInfo}</Tag></span>
         <span className="time">{dayjs(match.gameDateTime).format('HH:mm')}</span>
       </div>
       <div className="away">
         <span className="name">{match.awayTeamShortName}</span>
         <span className="score">{match.awayTeamScore}</span>
       </div>
-    </a>
+    </>
   )
 
   return (
     <div className="list-schedule">
-      {listWorldData.map(league => (
-        <List
-          key={league.categoryId}
-          size="small"
-          header={<h4>{league.key}</h4>}
-          bordered
-          dataSource={league.scheduleList}
-          renderItem={match => (
-            <List.Item>
-              <Link href={`http://sports.news.naver.com/sports/new/live/index.nhn?category=worldfootball&gameId=${match.gameId}`}>
-                <Match match={match} />
-              </Link>
-            </List.Item>
-          )}
-        />
-      ))}
-      {listKoreaData.map(league => (
-        <List
-          key={league.categoryId}
-          size="small"
-          header={<h4>{league.key}</h4>}
-          bordered
-          dataSource={league.scheduleList}
-          renderItem={match => (
-            <List.Item>
-              <Link href={`http://sports.news.naver.com/gameCenter/textRelayFootball.nhn?category=kleague&gameId=${match.gameId}`}>
-                <Match match={match} />
-              </Link>
-            </List.Item>
-          )}
-        />
-      ))}
+      {listData.length
+        ? listData.map((league: League) => (
+          <List
+            key={league.categoryId}
+            size="small"
+            header={<h4>{league.key}</h4>}
+            bordered
+            dataSource={league.scheduleList}
+            renderItem={match => (
+              <List.Item>
+                <Link href={`http://sports.news.naver.com/sports/new/live/index.nhn?category=worldfootball&gameId=${match.gameId}`}>
+                  <a>
+                    <Match match={match} />
+                  </a>
+                </Link>
+              </List.Item>
+            )}
+          />
+        ))
+        : (
+          <div className="empty">
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          </div>
+        )
+      }
     </div>
   )
 }

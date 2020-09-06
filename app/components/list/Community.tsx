@@ -91,6 +91,15 @@ const Community = () => {
     </Space>
   )
 
+  const bbsMap = {
+    fmkorea: 'FM코리아',
+    soccerline: '싸커라인',
+    bundes: '분데스매니아',
+    seriea: '세리에매니아',
+    gasengi: '가생이',
+    ppomppu: '뽐뿌'
+  }
+
   return (
     <>
       <div className="list-community">
@@ -101,14 +110,16 @@ const Community = () => {
             <List.Item
               key={item.id}
               actions={[
-                <IconText icon={FolderOutlined} text={`${item.bbs}${item.category ? ` - ${item.category}` : ''}`} key="bbs" />,
+                <IconText icon={FolderOutlined} text={`${bbsMap[item.bbs]}${item.category ? ` - ${item.category}` : ''}`} key="bbs" />,
                 <IconText icon={EyeOutlined} text={item.views} key="views" />,
                 <IconText icon={CalendarOutlined} text={getTime(item.date)} key="date" />
               ]}
             >
               <List.Item.Meta
-                title={<Link href={item.url}><a target="_blank" onClick={() => {
+                title={<Link href={item.url}><a onClick={(e) => {
+                  e.preventDefault()
                   !hasViewHistory('community', item.id) && viewCommunity({ variables: { id: item.id } })
+                  location.href = item.url
                 }}>{item.title}</a></Link>}
               />
             </List.Item>
