@@ -11,8 +11,6 @@ services:
       - ./.env:/usr/.env # env 파일 복사
     ports:
       - "3001:3001"
-    depends_on:
-      - mongo
     networks: 
       - server
 

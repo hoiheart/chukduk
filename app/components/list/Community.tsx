@@ -1,4 +1,4 @@
-import { createElement } from 'react'
+import { createElement, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { gql, useQuery, useMutation } from '@apollo/client'
@@ -47,6 +47,12 @@ const MUTATION = gql`
 
 const Community = () => {
   const router = useRouter()
+
+  // useEffect(() => {
+  //   router.beforePopState(({ url, as, options }) => {
+  //     console.log('pop')
+  //   })
+  // }, [])
 
   const category = String(router.query.category)
   const type = category.match(/(daily|weekly)/) ? category : ''
@@ -110,7 +116,7 @@ const Community = () => {
             <List.Item
               key={item.id}
               actions={[
-                <IconText icon={FolderOutlined} text={`${bbsMap[item.bbs]}${item.category ? ` - ${item.category}` : ''}`} key="bbs" />,
+                <IconText icon={FolderOutlined} text={`${bbsMap[item.bbs]}`} key="bbs" />,
                 <IconText icon={EyeOutlined} text={item.views} key="views" />,
                 <IconText icon={CalendarOutlined} text={getTime(item.date)} key="date" />
               ]}
