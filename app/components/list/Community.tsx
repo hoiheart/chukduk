@@ -5,6 +5,7 @@ import { gql, useQuery, useMutation } from '@apollo/client'
 import { List, Space, Skeleton } from 'antd'
 import { CalendarOutlined, EyeOutlined, FolderOutlined } from '@ant-design/icons'
 import { getTime } from '../../lib/time'
+import { hasViewHistory } from '../../lib/views'
 import More from './More'
 import Search from './Search'
 
@@ -107,7 +108,7 @@ const Community = () => {
             >
               <List.Item.Meta
                 title={<Link href={item.url}><a target="_blank" onClick={() => {
-                  viewCommunity({ variables: { id: item.id } })
+                  !hasViewHistory('community', item.id) && viewCommunity({ variables: { id: item.id } })
                 }}>{item.title}</a></Link>}
               />
             </List.Item>

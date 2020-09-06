@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: '/api/graphql',
-        destination: 'http://localhost:3001'
+        destination: process.env.API_HOST || ''
       }
     ]
   },

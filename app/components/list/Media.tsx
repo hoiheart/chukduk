@@ -5,6 +5,7 @@ import { gql, useQuery, useMutation } from '@apollo/client'
 import { Card, Divider, Space, Skeleton } from 'antd'
 import { CalendarOutlined, EyeOutlined, FolderOutlined } from '@ant-design/icons'
 import { getTime } from '../../lib/time'
+import { hasViewHistory } from '../../lib/views'
 import More from './More'
 import Search from './Search'
 
@@ -95,7 +96,7 @@ const Media = () => {
             <li key={item.id}>
               <Link href={item.url}>
                 <a target="_blank" onClick={() => {
-                  viewMedia({ variables: { id: item.id } })
+                  !hasViewHistory('media', item.id) && viewMedia({ variables: { id: item.id } })
                 }}>
                   <Card
                     hoverable
