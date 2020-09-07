@@ -1,15 +1,3 @@
-import Title from '../../components/layout/Title'
-import Menu from '../../components/list/Menu'
-import Community from '../../components/list/Community'
+import Community from './index'
 
-const Index = () => {
-  return (
-    <>
-      <Title text="커뮤니티" />
-      <Menu page="community" />
-      <Community />
-    </>
-  )
-}
-
-export default Index
+export default Community

@@ -25,6 +25,7 @@ html {
 
 body {
   overflow-y: scroll;
+  overflow-anchor: none;
   background-color: #f9f9f9;
   color: #333;
 }
@@ -302,6 +303,7 @@ footer {
 
     .name {
       order: 2;
+      word-break: keep-all;
     }
   }
 }

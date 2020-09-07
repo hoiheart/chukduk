@@ -45,7 +45,7 @@ const MUTATION = gql`
   }
 `
 
-const Media = () => {
+const MediaList = () => {
   const router = useRouter()
 
   const category = router.query.category || ''
@@ -137,4 +137,4 @@ const Media = () => {
   )
 }
 
-export default Media
+export default MediaList

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import Title from '../../components/layout/Title'
 import Date from '../../components/fixtures/Date'
 import Schedule from '../../components/fixtures/Schedule'
@@ -7,7 +8,8 @@ import 'dayjs/locale/ko'
 dayjs.locale('ko')
 
 const Fixtures = () => {
-  const date = dayjs()
+  const router = useRouter()
+  const date = router.query.date ? dayjs(router.query.date as string) : dayjs()
 
   return (
     <>

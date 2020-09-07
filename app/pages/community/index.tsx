@@ -1,15 +1,21 @@
+import detectMobile from 'is-mobile'
 import Title from '../../components/layout/Title'
 import Menu from '../../components/list/Menu'
-import Community from '../../components/list/Community'
+import CommunityList from '../../components/list/Community'
 
-const Index = () => {
+const Community = ({ isMobile }) => {
   return (
     <>
       <Title text="커뮤니티" />
       <Menu page="community" />
-      <Community />
+      <CommunityList isMobile={isMobile} />
     </>
   )
 }
 
-export default Index
+Community.getInitialProps = ({ req }) => {
+  const isMobile: boolean = detectMobile({ ua: req })
+  return { isMobile }
+}
+
+export default Community

@@ -1,4 +1,4 @@
-import { createElement, useEffect } from 'react'
+import { createElement } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { gql, useQuery, useMutation } from '@apollo/client'
@@ -45,14 +45,8 @@ const MUTATION = gql`
   }
 `
 
-const Community = () => {
+const CommunityList = ({ isMobile }) => {
   const router = useRouter()
-
-  // useEffect(() => {
-  //   router.beforePopState(({ url, as, options }) => {
-  //     console.log('pop')
-  //   })
-  // }, [])
 
   const category = String(router.query.category)
   const type = category.match(/(daily|weekly)/) ? category : ''
@@ -106,6 +100,19 @@ const Community = () => {
     ppomppu: '뽐뿌'
   }
 
+  const view = (item) => {
+    if (hasViewHistory('community', item.id)) {
+      if (isMobile) location.href = item.url
+    } else {
+      viewCommunity({
+        variables: { id: item.id },
+        update: () => {
+          if (isMobile) location.href = item.url
+        }
+      })
+    }
+  }
+
   return (
     <>
       <div className="list-community">
@@ -122,11 +129,15 @@ const Community = () => {
               ]}
             >
               <List.Item.Meta
-                title={<Link href={item.url}><a onClick={(e) => {
-                  e.preventDefault()
-                  !hasViewHistory('community', item.id) && viewCommunity({ variables: { id: item.id } })
-                  location.href = item.url
-                }}>{item.title}</a></Link>}
+                title={
+                  <Link href={item.url}>
+                    <a target={isMobile ? null : '_blank'} onClick={(e) => {
+                      if (isMobile) e.preventDefault()
+                      view({ id: item.id, url: item.url })
+                    }}>
+                      {item.title}
+                    </a>
+                  </Link>}
               />
             </List.Item>
           )}
@@ -142,4 +153,4 @@ const Community = () => {
   )
 }
 
-export default Community
+export default CommunityList
