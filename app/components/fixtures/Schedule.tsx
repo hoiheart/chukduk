@@ -7,6 +7,7 @@ interface League {
   key: string
   categoryId: string
   scheduleList: {
+    gameId: string
     homeTeamShortName: string
     homeTeamScore: number
     statusInfo: string

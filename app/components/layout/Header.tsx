@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <h1>
-        <Link href='/community' as="/">
+        <Link href='/community' as='/'>
           <a>
             <img src='/logo.png' alt='축덕' />
           </a>

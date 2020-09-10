@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:14-alpine
 
 # 앱 디렉터리 생성
 WORKDIR /usr/app
@@ -11,6 +11,7 @@ COPY package*.json ./
 # RUN npm install
 # 프로덕션을 위한 코드를 빌드하는 경우
 # RUN npm ci --only=production
+RUN npm i typescript pm2 -g
 RUN npm ci
 
 # 앱 소스 추가
@@ -19,5 +20,8 @@ COPY . .
 # 포트 바인딩
 EXPOSE 3000
 
+# 빌드
+RUN npm run build
+
 # CMD 구동
-CMD npm run build && npm start
+CMD npm run pm2

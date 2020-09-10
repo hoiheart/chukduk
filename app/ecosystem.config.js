@@ -1,7 +1,9 @@
 module.exports = {
   apps: [{
-    name: 'api',
-    script: './dist/index.js',
+    name: 'app',
+    // Cannot run on windows
+    script: 'npm',
+    args: 'start',
     env: {
       NODE_ENV: 'production'
     },
