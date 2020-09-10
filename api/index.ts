@@ -14,8 +14,6 @@ import { query as scheduleQuery } from './resolvers/schedule'
 
 dotenv.config({ path: '../.env' })
 
-const isDev = process.env.NODE_ENV !== 'production'
-
 const apollo = new ApolloServer({
   typeDefs: [commonDef, communityDef, mediaDef, scheduleDef],
   resolvers: {
@@ -42,7 +40,7 @@ server.register(apollo.createHandler({
   cors: true
 }))
 
-mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@cluster0.0at2r.gcp.mongodb.net/${process.env.MONGODB_DATABASE + (isDev ? '-test' : '')}?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@cluster0.0at2r.gcp.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(

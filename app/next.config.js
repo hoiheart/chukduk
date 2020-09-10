@@ -11,7 +11,7 @@ module.exports = {
       },
       {
         source: '/api/graphql',
-        destination: process.env.API_HOST || ''
+        destination: process.env.API_HOST
       }
     ]
   }
