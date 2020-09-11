@@ -1,7 +1,3 @@
-const dotenv = require('dotenv')
-
-dotenv.config({ path: '../.env' })
-
 module.exports = {
   async rewrites () {
     return [
@@ -11,7 +7,7 @@ module.exports = {
       },
       {
         source: '/api/graphql',
-        destination: process.env.API_HOST
+        destination: process.env.API_HOST || 'http://localhost:3001'
       }
     ]
   }

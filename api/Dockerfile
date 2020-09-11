@@ -1,5 +1,8 @@
 FROM node:14-alpine
 
+# 포트 바인딩
+EXPOSE 3001
+
 # 앱 디렉터리 생성
 WORKDIR /usr/api
 
@@ -16,9 +19,6 @@ RUN npm ci
 
 # 앱 소스 추가
 COPY . .
-
-# 포트 바인딩
-EXPOSE 3001
 
 # 빌드
 RUN npm run build

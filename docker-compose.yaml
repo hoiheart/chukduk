@@ -1,17 +1,24 @@
 version: "3"
 
 services:
+  nginx:
+    container_name: nginx
+    build:
+      dockerfile: ./Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+    networks:
+      - server
+
   api:
     container_name: api
     build:
       dockerfile: Dockerfile
       context: ./api
-    volumes:
-      - ./api:/usr/api
-      - ./.env:/usr/.env # env 파일 복사
     ports:
       - "3001:3001"
-    networks: 
+    networks:
       - server
 
   app:
@@ -21,18 +28,6 @@ services:
       context: ./app
     ports:
       - "3000:3000"
-    networks: 
-      - server
-
-  nginx:
-    container_name: nginx
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - "80:80"
-    depends_on:
-      - app
     networks: 
       - server
 

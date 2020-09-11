@@ -12,7 +12,7 @@ import { query as communityQuery, mutation as communityMutation } from './resolv
 import { query as mediaQuery, mutation as mediaMutation } from './resolvers/media'
 import { query as scheduleQuery } from './resolvers/schedule'
 
-dotenv.config({ path: '../.env' })
+dotenv.config()
 
 const apollo = new ApolloServer({
   typeDefs: [commonDef, communityDef, mediaDef, scheduleDef],
