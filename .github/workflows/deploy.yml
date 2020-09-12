@@ -40,12 +40,12 @@ jobs:
           context: app/
           imageName: app
 
-#       # Runs a single command using the runners shell
-#       - name: Run a one-line script
-#         run: echo Hello, world!
-
-#       # Runs a set of commands using the runners shell
-#       - name: Run a multi-line script
-#         run: |
-#           echo Add other actions to build,
-#           echo test, and deploy your project.
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_ID }}
+          password: ${{ secrets.DEPLOY_PASS }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            ${{ secrets.DEPLOY_SCRIPT }}
