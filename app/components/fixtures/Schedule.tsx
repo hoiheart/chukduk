@@ -7,13 +7,16 @@ interface League {
   key: string
   categoryId: string
   scheduleList: {
-    gameId: string
-    homeTeamShortName: string
-    homeTeamScore: number
-    statusInfo: string
-    gameDateTime: string
-    awayTeamShortName: string
     awayTeamScore: number
+    awayTeamShortName: string
+    categoryId: string
+    gameDateTime: string
+    gameId: string
+    homeTeamScore: number
+    homeTeamShortName: string
+    statusInfo: string
+    teamScheduleUrl: string
+    upperCategoryId: string
   }[]
 }
 
@@ -24,19 +27,23 @@ const QUERY = gql`
         key,
         categoryId,
         scheduleList {
-          homeTeamShortName,
-          homeTeamScore,
-          statusInfo,
-          gameDateTime,
+          awayTeamScore,
           awayTeamShortName,
-          awayTeamScore
+          categoryId,
+          gameDateTime,
+          gameId,
+          homeTeamScore,
+          homeTeamShortName,
+          statusInfo,
+          teamScheduleUrl,
+          upperCategoryId
         }
       }
     }
   }
 `
 
-const Schedule = ({ date }) => {
+const Schedule = ({ date, isMobile }) => {
   const { data, loading } = useQuery(
     QUERY,
     {
@@ -65,9 +72,9 @@ const Schedule = ({ date }) => {
   }
 
   const color = (info) => {
-    if (info === '경기중') return 'red'
     if (info === '경기전') return 'green'
-    return 'blue'
+    else if (info === '경기종료') return 'blue'
+    else return 'red'
   }
 
   const Match = ({ match }) => (
@@ -77,7 +84,7 @@ const Schedule = ({ date }) => {
         <span className="score">{match.homeTeamScore}</span>
       </div>
       <div className="info">
-        <span className="status"><Tag color={color(match.statusInfo)}>{match.statusInfo}</Tag></span>
+        <span className="status"><Tag color={color(match.statusInfo.replace('시작전', '경기전'))}>{match.statusInfo.replace('시작전', '경기전')}</Tag></span>
         <span className="time">{dayjs(match.gameDateTime).format('HH:mm')}</span>
       </div>
       <div className="away">
@@ -86,6 +93,25 @@ const Schedule = ({ date }) => {
       </div>
     </>
   )
+
+  const getLink = (match) => {
+    if (match.upperCategoryId === 'wfootball') {
+      if (isMobile) {
+        // 리그1 teamScheduleUrl 에 버그가 있음
+        return `https://m.sports.naver.com/worldfootball/gamecenter/worldfootball/index.nhn?league=${match.categoryId}&tab=record&gameId=${match.gameId}`
+      } else {
+        return `https://sports.news.naver.com/sports/new/live/index.nhn?category=worldfootball&gameId=${match.gameId}`
+      }
+    } else if (match.upperCategoryId === 'kfootball') {
+      if (isMobile) {
+        return `https://m.sports.naver.com${match.teamScheduleUrl}`
+      } else {
+        return `http://sports.news.naver.com/gameCenter/textRelayFootball.nhn?category=${match.categoryId}&gameId=${match.gameId}`
+      }
+    }
+
+    return ''
+  }
 
   return (
     <div className="list-schedule">
@@ -99,8 +125,8 @@ const Schedule = ({ date }) => {
             dataSource={league.scheduleList}
             renderItem={match => (
               <List.Item>
-                <Link href={`http://sports.news.naver.com/sports/new/live/index.nhn?category=worldfootball&gameId=${match.gameId}`}>
-                  <a>
+                <Link href={getLink(match)}>
+                  <a target="_blank">
                     <Match match={match} />
                   </a>
                 </Link>

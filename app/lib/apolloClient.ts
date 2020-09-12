@@ -9,11 +9,15 @@ function createApolloClient () {
     link: new HttpLink({
       uri: '/api/graphql'
     }),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {}
-      }
-    })
+    cache: new InMemoryCache(),
+    defaultOptions: {
+      // watchQuery: {
+      //   fetchPolicy: 'no-cache',
+      // },
+      // query: {
+      //   fetchPolicy: 'no-cache',
+      // }
+    }
   })
 }
 

@@ -8,12 +8,16 @@ export const typeDef = gql`
   }
 
   type Match {
-    homeTeamShortName: String
-    homeTeamScore: Int,
-    statusInfo: String,
-    gameDateTime: String,
+    awayTeamScore: Int,
     awayTeamShortName: String,
-    awayTeamScore: Int
+    categoryId: String,
+    gameDateTime: String,
+    gameId: String,
+    homeTeamScore: Int,
+    homeTeamShortName: String
+    statusInfo: String,
+    teamScheduleUrl: String,
+    upperCategoryId: String
   }
 
   type ScheduleList {

@@ -22,12 +22,16 @@ export const query = {
             categoryId: league.categoryId,
             scheduleList: league.scheduleList.map(match => {
               return {
-                homeTeamShortName: match.homeTeamShortName,
-                homeTeamScore: match.homeTeamScore,
-                statusInfo: match.statusInfo,
-                gameDateTime: match.gameDateTime,
+                awayTeamScore: match.awayTeamScore,
                 awayTeamShortName: match.awayTeamShortName,
-                awayTeamScore: match.awayTeamScore
+                categoryId: match.categoryId,
+                gameDateTime: match.gameDateTime,
+                gameId: match.gameId,
+                homeTeamScore: match.homeTeamScore,
+                homeTeamShortName: match.homeTeamShortName,
+                statusInfo: match.statusInfo,
+                teamScheduleUrl: match.teamScheduleUrl,
+                upperCategoryId: match.upperCategoryId
               }
             })
           })
