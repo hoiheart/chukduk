@@ -11,13 +11,34 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        
-      - name: GitHub Container Registry Docker Action
+
+      - name: Container - nginx
         uses: trentjones21/github-docker@master
         with:
-          accessToken: ${{ secrets.CONTAINER_TOKEN }}
-          context: api/
+          accessToken: ${{ secrets.REG_TOKEN }}
+          context: nginx/
+          imageName: nginx
 
+      - name: Container - api
+        uses: trentjones21/github-docker@master
+        with:
+          accessToken: ${{ secrets.REG_TOKEN }}
+          context: api/
+          imageName: api
+          buildArgs:
+            MONGODB_HOST=${{ secrets.MONGODB_HOST }}
+            MONGODB_USER=${{ secrets.MONGODB_USER }}
+            MONGODB_PASS=${{ secrets.MONGODB_PASS }}
+            MONGODB_DATABASE=${{ secrets.MONGODB_DATABASE }}
+            SCHEDULE_WORLD=${{ secrets.SCHEDULE_WORLD }}
+            SCHEDULE_KOREA=${{ secrets.SCHEDULE_KOREA }}
+
+      - name: Container - app
+        uses: trentjones21/github-docker@master
+        with:
+          accessToken: ${{ secrets.REG_TOKEN }}
+          context: app/
+          imageName: app
 
 #       # Runs a single command using the runners shell
 #       - name: Run a one-line script
