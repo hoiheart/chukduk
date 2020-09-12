@@ -3,9 +3,7 @@ version: "3"
 services:
   nginx:
     container_name: nginx
-    build:
-      dockerfile: ./Dockerfile
-      context: ./nginx
+    image: ghcr.io/hoiheart/chukduk/nginx:latest
     ports:
       - "80:80"
     networks:
@@ -13,9 +11,7 @@ services:
 
   api:
     container_name: api
-    build:
-      dockerfile: Dockerfile
-      context: ./api
+    image: ghcr.io/hoiheart/chukduk/api:latest
     ports:
       - "3001:3001"
     networks:
@@ -23,9 +19,7 @@ services:
 
   app:
     container_name: app
-    build:
-      dockerfile: Dockerfile
-      context: ./app
+    image: ghcr.io/hoiheart/chukduk/app:latest
     ports:
       - "3000:3000"
     networks: 

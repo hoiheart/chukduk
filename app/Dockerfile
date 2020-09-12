@@ -3,7 +3,7 @@ FROM node:14-alpine
 # 포트 바인딩
 EXPOSE 3000
 
-# env
+# ENV (API 서버 통신용)
 ENV API_HOST=http://api:3001
 
 # 앱 디렉터리 생성
