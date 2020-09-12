@@ -55,6 +55,7 @@ const CommunityList = ({ isMobile }) => {
   const { data, loading, fetchMore } = useQuery(
     QUERY,
     {
+      fetchPolicy: 'network-only',
       variables: {
         title: router.query.search || '',
         type,

@@ -47,6 +47,7 @@ const Schedule = ({ date, isMobile }) => {
   const { data, loading } = useQuery(
     QUERY,
     {
+      fetchPolicy: 'network-only',
       variables: {
         date
       }

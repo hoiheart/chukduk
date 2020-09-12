@@ -53,6 +53,7 @@ const MediaList = () => {
   const { data, loading, fetchMore } = useQuery(
     QUERY,
     {
+      fetchPolicy: 'network-only',
       variables: {
         title: router.query.search || '',
         category,
