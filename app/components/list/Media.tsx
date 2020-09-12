@@ -54,6 +54,7 @@ const MediaList = () => {
     QUERY,
     {
       fetchPolicy: 'network-only',
+      nextFetchPolicy: 'cache-first',
       variables: {
         title: router.query.search || '',
         category,
