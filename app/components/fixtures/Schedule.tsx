@@ -48,6 +48,7 @@ const Schedule = ({ date, isMobile }) => {
     QUERY,
     {
       fetchPolicy: 'network-only',
+      nextFetchPolicy: 'cache-first',
       variables: {
         date
       }

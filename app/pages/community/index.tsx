@@ -14,7 +14,7 @@ const Community = ({ isMobile }) => {
 }
 
 Community.getInitialProps = ({ req }) => {
-  const isMobile: boolean = detectMobile({ ua: req })
+  const isMobile: boolean = detectMobile({ ua: req, tablet: true })
   return { isMobile }
 }
 
