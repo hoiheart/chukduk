@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Menu as AntdMenu, Dropdown, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
@@ -7,8 +7,6 @@ import { DownOutlined } from '@ant-design/icons'
 type Page = 'community' | 'media'
 
 const Menu = ({ page }: { page: Page }) => {
-  const [value, setValue] = useState(0)
-
   const menuData = {
     community: [
       { href: '/community', as: '/', title: '전체' },
@@ -37,11 +35,14 @@ const Menu = ({ page }: { page: Page }) => {
 
   const menuList = menuData[page]
 
+  const router = useRouter()
+  const menuIndex = menuData[page].findIndex(v => v.as === router.asPath) || 0
+
   const MenuItems = (
     <AntdMenu>
-      {menuList?.map((v, index) => (
+      {menuList?.map((v) => (
         <AntdMenu.Item key={v.title}>
-          <Link href={v.href} as={v.as}><a onClick={() => setValue(index)}>{v.title}</a></Link>
+          <Link href={v.href} as={v.as}><a>{v.title}</a></Link>
         </AntdMenu.Item>
       ))}
     </AntdMenu>
@@ -50,7 +51,7 @@ const Menu = ({ page }: { page: Page }) => {
   return (
     <div className="menu">
       <Dropdown overlay={MenuItems} trigger={['click']} placement="bottomRight">
-        <Button>{menuList?.[value]?.title} <DownOutlined /></Button>
+        <Button>{menuList?.[menuIndex]?.title} <DownOutlined /></Button>
       </Dropdown>
     </div>
   )
