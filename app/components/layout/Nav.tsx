@@ -5,7 +5,6 @@ import { CalendarFilled, PlayCircleFilled, RobotFilled } from '@ant-design/icons
 
 const Nav = () => {
   const router = useRouter()
-
   return (
     <nav>
       <ul>
