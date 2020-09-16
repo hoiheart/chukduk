@@ -36,7 +36,7 @@ const Menu = ({ page }: { page: Page }) => {
   const menuList = menuData[page]
 
   const router = useRouter()
-  const menuIndex = menuData[page].findIndex(v => v.as === router.asPath) || 0
+  const menuIndex = menuData[page].findIndex(v => v.as === router.asPath.split('?')[0]) || 0
 
   const MenuItems = (
     <AntdMenu>
