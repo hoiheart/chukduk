@@ -1,4 +1,6 @@
 FROM nginx:latest
+RUN apt-get update
+RUN apt-get install vim
 
 COPY ./static /var/www/html
 COPY ./cert /var/www/cert
