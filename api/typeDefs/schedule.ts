@@ -1,13 +1,13 @@
 import { gql } from 'apollo-server-fastify'
 
 export const typeDef = gql`
-  type Schedule {
+  type Schedule @cacheControl(maxAge: 60) {
     key: String,
     categoryId: String,
     scheduleList: [Match]
   }
 
-  type Match {
+  type Match @cacheControl(maxAge: 60) {
     awayTeamScore: Int,
     awayTeamShortName: String,
     categoryId: String,
@@ -20,7 +20,7 @@ export const typeDef = gql`
     upperCategoryId: String
   }
 
-  type ScheduleList {
+  type ScheduleList @cacheControl(maxAge: 60) {
     result: [Schedule]
   }
 `
