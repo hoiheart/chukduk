@@ -13,8 +13,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            api:
+              - '*'
+              - 'api/**'
+            app:
+              - '*'
+              - 'app/**'
+            nginx:
+              - '*'
+              - 'nginx/**'
+
       - name: Container - nginx
         uses: trentjones21/github-docker@master
+        if: steps.filter.outputs.nginx == 'true'
         with:
           accessToken: ${{ secrets.REG_TOKEN }}
           context: nginx/
@@ -22,6 +37,7 @@ jobs:
 
       - name: Container - api
         uses: trentjones21/github-docker@master
+        if: steps.filter.outputs.api == 'true'
         with:
           accessToken: ${{ secrets.REG_TOKEN }}
           context: api/
@@ -36,6 +52,7 @@ jobs:
 
       - name: Container - app
         uses: trentjones21/github-docker@master
+        if: steps.filter.outputs.app == 'true'
         with:
           accessToken: ${{ secrets.REG_TOKEN }}
           context: app/
