@@ -12,6 +12,7 @@ export const query = {
     try {
       const world: any = await axios.get(`${process.env.SCHEDULE_WORLD}${query}`)
       const korea: any = await axios.get(`${process.env.SCHEDULE_KOREA}${query}`)
+      console.log(world)
 
       const result = []
 

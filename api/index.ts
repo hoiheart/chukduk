@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import dotenv from 'dotenv'
 import { ApolloServer } from 'apollo-server-fastify'
+import responseCachePlugin from 'apollo-server-plugin-response-cache'
 import mongoose from 'mongoose'
 import fastify, { FastifyInstance } from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
@@ -15,6 +16,7 @@ import { query as scheduleQuery } from './resolvers/schedule'
 dotenv.config()
 
 const apollo = new ApolloServer({
+  plugins: [responseCachePlugin()],
   typeDefs: [commonDef, communityDef, mediaDef, scheduleDef],
   resolvers: {
     Query: {
