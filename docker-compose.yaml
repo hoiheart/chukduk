@@ -6,6 +6,10 @@ services:
     image: ghcr.io/hoiheart/chukduk/nginx:latest
     ports:
       - "80:80"
+      - "443:443"
+    volumes: 
+      - /etc/letsencrypt/archive/chukduk.net/fullchain1.pem:/etc/nginx/certs/fullchain.pem
+      - /etc/letsencrypt/archive/chukduk.net/privkey1.pem:/etc/nginx/certs/privkey.pem
     networks:
       - server
 
