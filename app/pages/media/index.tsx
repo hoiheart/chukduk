@@ -8,7 +8,7 @@ const Media = () => {
     <>
       <Head>
         <title>미디어 | 축덕</title>
-        <meta property="og:title" content="미디어 | 축덕" key="og:title" />
+        <meta key="og:title" property="og:title" content="미디어 | 축덕" />
       </Head>
       <Title text="미디어" />
       <Menu page="media" />

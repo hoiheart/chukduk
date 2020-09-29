@@ -6,7 +6,7 @@ const About = () => {
     <>
       <Head>
         <title>축덕이란? | 축덕</title>
-        <meta property="og:title" content="축덕이란? | 축덕" key="og:title" />
+        <meta key="og:title" property="og:title" content="축덕이란? | 축덕" />
       </Head>
       <Title text="축덕이란?" />
       <div className="about">

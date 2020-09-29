@@ -17,7 +17,7 @@ const Fixtures = ({ isMobile }) => {
     <>
       <Head>
         <title>일정 | 축덕</title>
-        <meta property="og:title" content="일정 | 축덕" key="og:title" />
+        <meta key="og:title" property="og:title" content="일정 | 축덕" />
       </Head>
       <Title text="일정" />
       <Date title={date.format('YYYY년 MM월 DD일 (ddd)')} prev={date.add(-1, 'day').format('YYYYMMDD')} next={date.add(1, 'day').format('YYYYMMDD')} />
