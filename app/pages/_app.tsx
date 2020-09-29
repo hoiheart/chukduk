@@ -20,7 +20,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name='robots' content='index, follow' />
         <meta name="google-site-verification" content="zYbXj849NBlArZOtNJ7I1vEuFl-F6PRnUdRpqBYs-Ec" />
         <meta name="naver-site-verification" content="2af23c79e0ca38b188a83c4627dbd808e4e9ed20" />
-        <meta property='og:title' content='축덕' />
+        <meta property="og:title" content="축덕" key="og:title" />
         <meta name="description" content="자주 들르는 축구 커뮤니티 소식! 이제 이리저리 옮겨 다니지 마시고 축덕에서 한 눈에 보세요!" />
         <meta property="og:description" content="자주 들르는 축구 커뮤니티 소식! 이제 이리저리 옮겨 다니지 마시고 축덕에서 한 눈에 보세요!" />
         <meta property="og:image" content="/sns.png" />

@@ -1,8 +1,13 @@
+import Head from 'next/head'
 import Title from '../components/layout/Title'
 
 const About = () => {
   return (
     <>
+      <Head>
+        <title>축덕이란? | 축덕</title>
+        <meta property="og:title" content="축덕이란? | 축덕" key="og:title" />
+      </Head>
       <Title text="축덕이란?" />
       <div className="about">
         <p>
