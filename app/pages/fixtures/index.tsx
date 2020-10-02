@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import detectMobile from 'is-mobile'
 import Title from '../../components/layout/Title'
@@ -14,6 +15,10 @@ const Fixtures = ({ isMobile }) => {
 
   return (
     <>
+      <Head>
+        <title>일정 | 축덕</title>
+        <meta key="og:title" property="og:title" content="일정 | 축덕" />
+      </Head>
       <Title text="일정" />
       <Date title={date.format('YYYY년 MM월 DD일 (ddd)')} prev={date.add(-1, 'day').format('YYYYMMDD')} next={date.add(1, 'day').format('YYYYMMDD')} />
       <Schedule date={date.format('YYYYMMDD')} isMobile={isMobile} />
