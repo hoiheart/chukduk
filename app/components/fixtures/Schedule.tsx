@@ -10,12 +10,12 @@ interface League {
     awayTeamScore: number
     awayTeamShortName: string
     categoryId: string
+    defaultGameCenterUrl: string
     gameDateTime: string
     gameId: string
     homeTeamScore: number
     homeTeamShortName: string
     statusInfo: string
-    teamScheduleUrl: string
     upperCategoryId: string
   }[]
 }
@@ -29,13 +29,13 @@ const QUERY = gql`
         scheduleList {
           awayTeamScore,
           awayTeamShortName,
+          defaultGameCenterUrl,
           categoryId,
           gameDateTime,
           gameId,
           homeTeamScore,
           homeTeamShortName,
           statusInfo,
-          teamScheduleUrl,
           upperCategoryId
         }
       }
@@ -99,14 +99,13 @@ const Schedule = ({ date, isMobile }) => {
   const getLink = (match) => {
     if (match.upperCategoryId === 'wfootball') {
       if (isMobile) {
-        // 리그1 teamScheduleUrl 에 버그가 있음
-        return `https://m.sports.naver.com/worldfootball/gamecenter/worldfootball/index.nhn?league=${match.categoryId}&tab=record&gameId=${match.gameId}`
+        return `https://m.sports.naver.com${match.defaultGameCenterUrl}gameId=${match.gameId}`
       } else {
         return `https://sports.news.naver.com/sports/new/live/index.nhn?category=worldfootball&gameId=${match.gameId}`
       }
     } else if (match.upperCategoryId === 'kfootball') {
       if (isMobile) {
-        return `https://m.sports.naver.com${match.teamScheduleUrl}`
+        return `https://m.sports.naver.com${match.defaultGameCenterUrl}gameId=${match.gameId}`
       } else {
         return `http://sports.news.naver.com/gameCenter/textRelayFootball.nhn?category=${match.categoryId}&gameId=${match.gameId}`
       }

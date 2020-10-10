@@ -11,12 +11,12 @@ export const typeDef = gql`
     awayTeamScore: Int,
     awayTeamShortName: String,
     categoryId: String,
+    defaultGameCenterUrl: String,
     gameDateTime: String,
     gameId: String,
     homeTeamScore: Int,
     homeTeamShortName: String
     statusInfo: String,
-    teamScheduleUrl: String,
     upperCategoryId: String
   }
 
