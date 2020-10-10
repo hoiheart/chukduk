@@ -12,7 +12,6 @@ export const query = {
     try {
       const world: any = await axios.get(`${process.env.SCHEDULE_WORLD}${query}`)
       const korea: any = await axios.get(`${process.env.SCHEDULE_KOREA}${query}`)
-      console.log(world)
 
       const result = []
 
@@ -26,12 +25,12 @@ export const query = {
                 awayTeamScore: match.awayTeamScore,
                 awayTeamShortName: match.awayTeamShortName,
                 categoryId: match.categoryId,
+                defaultGameCenterUrl: match.defaultGameCenterUrl,
                 gameDateTime: match.gameDateTime,
                 gameId: match.gameId,
                 homeTeamScore: match.homeTeamScore,
                 homeTeamShortName: match.homeTeamShortName,
                 statusInfo: match.statusInfo,
-                teamScheduleUrl: match.teamScheduleUrl,
                 upperCategoryId: match.upperCategoryId
               }
             })
