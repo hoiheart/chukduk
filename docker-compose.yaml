@@ -8,8 +8,8 @@ services:
       - "80:80"
       - "443:443"
     volumes: 
-      - /etc/letsencrypt/archive/chukduk.net-0001/fullchain1.pem:/etc/nginx/certs/fullchain.pem
-      - /etc/letsencrypt/archive/chukduk.net-0001/privkey1.pem:/etc/nginx/certs/privkey.pem
+      - /home/hoiheart/cert/fullchain.pem:/etc/nginx/certs/fullchain.pem
+      - /home/hoiheart/cert/privkey.pem:/etc/nginx/certs/privkey.pem
     networks:
       - server
 
