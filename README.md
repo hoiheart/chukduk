@@ -1,3 +1,3 @@
 # chukduk
 
-https://chukduk.net
+http://chukduk.net
